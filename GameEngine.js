@@ -41,6 +41,7 @@ const runGame = {
         turnZero(currentGame.player1, currentGame.player2);
         //console.log(currentGame.player1.turn.isOver)
         while(currentGame.isGameOver != true){
+            console.log("Available commands are 'play turn' and 'quit'")
             var command = readline.question('What would you like to do?\n')
             if (command == 'play turn'){
                 turnLoop(currentGame.player1)
@@ -48,6 +49,9 @@ const runGame = {
             if (command == 'quit'){
                     currentGame.incrementTurnsElapsed()
                     currentGame.setIsGameOver(true)
+            }
+            else{
+                console.log('Invalid command!')
             }
         }
         console.log("This is just a proof of concept, so the game will now close")

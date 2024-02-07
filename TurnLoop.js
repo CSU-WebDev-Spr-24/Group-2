@@ -14,8 +14,15 @@ module.exports = function mainLoop(player){
         randCardName = randCardFromDeck.name
         console.log(`You added this to your hand: ${randCardName}!`);
         console.log(`deck size is: ${currPlayerDeck.length}`)
-        //this is bad! only returns ONE card
-        console.log(`This is your hand: ${player.playerField.hand[0].name}`)
+        console.log(`This is your hand...`);
+        var handString = '';
+        for (let i = 0; i < player.playerField.hand.length; i ++){
+        handString = handString.concat(player.playerField.hand[i].name)
+        if (i < player.playerField.hand.length -1){
+            handString = handString.concat(', ');
+        }
+        }
+        console.log(`${handString}`)
         console.log('\n')
         while(player.turn.isOver == false){
             console.log(`It is ${player.playerID}'s turn...`)
