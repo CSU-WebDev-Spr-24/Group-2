@@ -7,7 +7,10 @@ module.exports = function turnZero(player1, player2) {
     }
     initializeActiveSlot(player1);
     var toContinue = readline.question("Player 1 initial draw complete, it is now Player 2's turn\n");
-    initialDrawPhase(player2)
+    goodDraw = false;
+    while (goodDraw == false){
+        initialDrawPhase(player2)
+    }
     initializeActiveSlot(player2);
 }
 

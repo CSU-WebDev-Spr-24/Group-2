@@ -3,17 +3,18 @@ const Player = require('./Player')
 
 module.exports = function mainLoop(player){
         console.log(`\nIt is ${player.playerID}'s turn...`)
-        console.log('Draw Phase')
+        //console.log('Draw Phase')
         //append random card from deck into hand
-        currPlayerDeck = player.playerField.deck.cardList
-        randomNum = Math.floor(Math.random() * (currPlayerDeck.length -1))
-        console.log(`deck size is: ${currPlayerDeck.length}`)
-        randCardFromDeck = currPlayerDeck[randomNum]
-        player.playerField.appendHand(currPlayerDeck[randomNum])
-        currPlayerDeck.splice(randomNum, 1)
-        randCardName = randCardFromDeck.name
-        console.log(`You added this to your hand: ${randCardName}!`);
-        console.log(`deck size is: ${currPlayerDeck.length}`)
+        // currPlayerDeck = player.playerField.deck.cardList
+        // randomNum = Math.floor(Math.random() * (currPlayerDeck.length -1))
+        // console.log(`deck size is: ${currPlayerDeck.length}`)
+        // randCardFromDeck = currPlayerDeck[randomNum]
+        // player.playerField.appendHand(currPlayerDeck[randomNum])
+        // currPlayerDeck.splice(randomNum, 1)
+        // randCardName = randCardFromDeck.name
+        // console.log(`You added this to your hand: ${randCardName}!`);
+        // console.log(`deck size is: ${currPlayerDeck.length}`)
+        drawCard(player);
         console.log(`This is your hand...`);
         var handString = '';
         for (let i = 0; i < player.playerField.hand.length; i ++){
@@ -44,7 +45,17 @@ module.exports = function mainLoop(player){
                 }
         }
     function drawCard(player){
-
+        console.log('Draw Phase')
+        //append random card from deck into hand
+        currPlayerDeck = player.playerField.deck.cardList
+        randomNum = Math.floor(Math.random() * (currPlayerDeck.length -1))
+        console.log(`deck size is: ${currPlayerDeck.length}`)
+        randCardFromDeck = currPlayerDeck[randomNum]
+        player.playerField.appendHand(currPlayerDeck[randomNum])
+        currPlayerDeck.splice(randomNum, 1)
+        randCardName = randCardFromDeck.name
+        console.log(`You added this to your hand: ${randCardName}!`);
+        console.log(`deck size is: ${currPlayerDeck.length}`)
     }
 }
 
