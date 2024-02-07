@@ -38,8 +38,6 @@ const testSetPopulate={
             console.log("NEW API CALL".concat(cardID))
             apiCall.pokeapi(cardID)
         }
-        // charID = 'base1-46'
-        // apiCall.pokeapi(charID);
     }
 }
 
@@ -53,7 +51,6 @@ const baseSetPopulate= {
             var cardID =setID.concat(i.toString());
             apiCall.pokeapi(cardID);
         }
-        //jsonFormat.stop();
     }
 }
 

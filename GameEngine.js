@@ -27,6 +27,9 @@ const runGame = {
         player.playerField.setPlayerID(player.getPlayerID())
         player.playerField.setBench([])
         player.playerField.setHand([])
+        player.playerField.setDeck(player.getDeck())
+        player.playerField.setDiscard([])
+        player.playerField.setActive([])
     },
 
     gameLoop(currentGame){
@@ -35,7 +38,7 @@ const runGame = {
         console.log("\n")
         //console.log(currentGame.player1.turn.isOver)
         while(currentGame.isGameOver != true){
-            var command = readline.question('What would you like to do?')
+            var command = readline.question('What would you like to do? ')
             if (command == 'play turn'){
                 turnLoop(currentGame.player1)
             }

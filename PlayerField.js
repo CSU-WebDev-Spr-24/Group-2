@@ -36,6 +36,10 @@ module.exports = class PlayerField {
         this.hand = hand
     }
 
+    setDeck(deck){
+        this.deck = deck
+    }
+
     setBench(bench){
         this.bench = bench
     }
