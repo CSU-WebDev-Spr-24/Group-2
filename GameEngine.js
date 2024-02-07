@@ -9,6 +9,7 @@ const turn = require('./PlayerTurn')
 // });
 const readline = require('readline-sync')
 const turnLoop = require('./TurnLoop')
+const turnZero = require('./TurnZero')
 
 const runGame = {
     initialize(){
@@ -36,9 +37,11 @@ const runGame = {
         console.log("Welcome to PokeTCG Prototype")
         console.log("This is a text based version of the game")
         console.log("\n")
+        console.log("The initial draw phase will now begin")
+        turnZero(currentGame.player1, currentGame.player2);
         //console.log(currentGame.player1.turn.isOver)
         while(currentGame.isGameOver != true){
-            var command = readline.question('What would you like to do? ')
+            var command = readline.question('What would you like to do?\n')
             if (command == 'play turn'){
                 turnLoop(currentGame.player1)
             }
