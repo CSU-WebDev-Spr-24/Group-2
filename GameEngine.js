@@ -14,10 +14,8 @@ const turnZero = require('./TurnZero')
 const runGame = {
     initialize(){
         //add uuid functionality, right now just uses base values
-        var player1 = new player(1234, new deck(),
-                        new PlayerField(), new turn(1234, 'draw', false))
-        var player2 = new player(5678, new deck(),
-                        new PlayerField(), new turn(5678, 'draw', true))
+        var player1 = new player(1234, new PlayerField(), new turn(1234, 'draw', false))
+        var player2 = new player(5678, new PlayerField(), new turn(5678, 'draw', true))
         currentGame = new game(player1, player2, 0, false)
         this.initPlayerFields(player1)
         this.initPlayerFields(player2)
@@ -26,9 +24,10 @@ const runGame = {
 
     initPlayerFields(player){
         player.playerField.setPlayerID(player.getPlayerID())
+        //why is this giving not a function error????
         player.playerField.setBench([])
         player.playerField.setHand([])
-        player.playerField.setDeck(player.getDeck())
+        player.playerField.setDeck(new deck())
         player.playerField.setDiscard([])
         player.playerField.setActive([])
     },

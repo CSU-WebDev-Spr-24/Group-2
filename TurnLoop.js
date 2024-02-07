@@ -5,7 +5,7 @@ module.exports = function mainLoop(player){
         console.log(`\nIt is ${player.playerID}'s turn...`)
         console.log('Draw Phase')
         //append random card from deck into hand
-        currPlayerDeck = player.deck.cardList
+        currPlayerDeck = player.playerField.deck.cardList
         randomNum = Math.floor(Math.random() * (currPlayerDeck.length -1))
         console.log(`deck size is: ${currPlayerDeck.length}`)
         randCardFromDeck = currPlayerDeck[randomNum]

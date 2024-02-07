@@ -2,7 +2,10 @@ const readline = require('readline-sync')
 
 module.exports = function turnZero(player1, player2) {
     console.log('Initial draw phase for Player 1...\n')
-    initialDrawPhase(player1);
+    goodDraw = false;
+    while (goodDraw == false){
+        initialDrawPhase(player1);
+    }
     initializeActiveSlot(player1);
     var toContinue = readline.question("Player 1 initial draw complete, it is now Player 2's turn\n");
     console.log('Initial draw phase for Player 2...\n')
@@ -13,7 +16,15 @@ module.exports = function turnZero(player1, player2) {
 function initialDrawPhase(player){
     console.log(`\nInitial draw phase for ${player.playerID}...`)
     console.log('Initial Draw Phase')
-    currPlayerDeck = player.deck.cardList
+    var drawString = initDrawPhaseRandomizer(player)
+    console.log(`You added this to your hand: ${drawString}!`);
+    console.log(`deck size is: ${currPlayerDeck.length}`)
+    //console.log(`This is your hand: ${drawString}`)
+    console.log('\n')
+}
+
+function initDrawPhaseRandomizer(player){
+    currPlayerDeck = player.playerField.deck.cardList
     var drawString = ''
     for (let i = 0; i < 5; i++){
         randomNum = Math.floor(Math.random() * (currPlayerDeck.length -1))
@@ -25,10 +36,18 @@ function initialDrawPhase(player){
             drawString = drawString.concat(', ');
         }
     }
-    console.log(`You added this to your hand: ${drawString}!`);
-    console.log(`deck size is: ${currPlayerDeck.length}`)
-    console.log(`This is your hand: ${drawString}`)
-    console.log('\n')
+    for (let i = 0; i < 5; i++){
+        if (player.playerField.hand[i].supertype == 'Pokémon'){
+            console.log(`${drawString}`)
+            goodDraw = true;
+            return drawString;
+        }
+        //this is not working
+    else{
+        currPlayerDeck.push((player.playerField.getHand()))
+        console.log("Recalling random function")
+    }
+    }
 }
 
 function initializeActiveSlot(player){
@@ -50,12 +69,10 @@ function initializeActiveSlot(player){
             activePoke = player.playerField.hand[i]
         }
     }
-    console.log(`chosenpokemonString - ${chosenPokemonString}`)
-    console.log(`active poke supertype - ${activePoke.supertype}`)
     //this eventually needs to be changed to handle evolutions
     if (pokemonHandNames.includes(chosenPokemonString) && activePoke.supertype == 'Pokémon'){
         player.playerField.setActive(activePoke)
-        console.log(`Hurray! Active pokemon selected ${activePoke.name}`)
+        console.log(`Active pokemon selected ${activePoke.name}`)
     }
     else{
         console.log("invalid choice!");

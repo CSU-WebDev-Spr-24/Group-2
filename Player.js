@@ -1,13 +1,8 @@
 module.exports = class Player {
-    constructor(playerID, deck, playerField, turn) {
+    constructor(playerID, playerField, turn) {
         this.playerID = playerID
-        this.deck = deck
         this.playerField = playerField
         this.turn = turn
-    }
-
-    getDeck(){
-        return this.deck
     }
 
     getPlayerID(){
@@ -16,10 +11,6 @@ module.exports = class Player {
 
     getTurn(){
         return this.turn
-    }
-
-    setDeck(deck){
-        this.deck = deck
     }
 
     setPlayerID(playerID){
