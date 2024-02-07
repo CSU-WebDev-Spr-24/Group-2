@@ -43,5 +43,8 @@ module.exports = function mainLoop(player){
                     console.log('Invalid command!')
                 }
         }
+    function drawCard(player){
+
+    }
 }
 

@@ -70,7 +70,7 @@ function initializeActiveSlot(player){
         }
         //this eventually needs to be changed to handle evolutions
         if (pokemonHandNames.includes(chosenPokemonString) && activePoke.supertype == 'Pokémon'){
-            player.playerField.setActive(activePoke)
+            player.playerField.setActive([activePoke, 0])
             console.log(`Active pokemon selected ${activePoke.name}\n`)
             activeSlotBool = true
         }

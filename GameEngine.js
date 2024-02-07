@@ -24,12 +24,12 @@ const runGame = {
 
     initPlayerFields(player){
         player.playerField.setPlayerID(player.getPlayerID())
-        //why is this giving not a function error????
-        player.playerField.setBench([])
+        //bench example: [[squirtle, energy, energy], [charmander, energy], [pidgey]]
+        player.playerField.setBench([[]])
         player.playerField.setHand([])
         player.playerField.setDeck(new deck())
         player.playerField.setDiscard([])
-        player.playerField.setActive([])
+        player.playerField.setActive([[]])
     },
 
     gameLoop(currentGame){
