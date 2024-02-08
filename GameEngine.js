@@ -3,10 +3,6 @@ const game = require('./Game')
 const deck = require('./DeckCreate')
 const PlayerField = require('./PlayerField')
 const turn = require('./PlayerTurn')
-// const readline = require('readline').createInterface({
-//     input: process.stdin,
-//     output: process.stdout
-// });
 const readline = require('readline-sync')
 const turnLoop = require('./TurnLoop')
 const turnZero = require('./TurnZero')
@@ -43,14 +39,11 @@ const runGame = {
             console.log("Available commands are 'play turn' and 'quit'")
             var command = readline.question('What would you like to do?\n')
             if (command == 'play turn'){
-                turnLoop(currentGame.player1)
+                turnLoop(currentGame)
             }
             if (command == 'quit'){
                     currentGame.incrementTurnsElapsed()
                     currentGame.setIsGameOver(true)
-            }
-            else{
-                console.log('Invalid command!')
             }
         }
         console.log("This is just a proof of concept, so the game will now close")

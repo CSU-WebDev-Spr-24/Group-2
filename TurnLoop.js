@@ -1,10 +1,17 @@
 const readline = require('readline-sync')
 const Player = require('./Player')
 
-module.exports = function mainLoop(player){
+module.exports = function mainLoop(currentGame){
+        if (currentGame.turnsElapsed % 2 == 0){
+            var player = currentGame.player1
+        }
+        else{
+            var player = currentGame.player2
+        }
         console.log(`\nIt is ${player.playerID}'s turn...`)
         drawCard(player);
         printHand(player);
+        player.turn.setIsOver(false)
         while(player.turn.isOver == false){
             console.log(`It is ${player.playerID}'s turn...`)
             var command = readline.question('What would you like to do?\n')
@@ -21,9 +28,10 @@ module.exports = function mainLoop(player){
                     player.turn.setIsOver(true)
                 }
                 else{
-                    console.log('Invalid command!')
+                    console.log('Invalid turn loop command!')
                 }
         }
+        currentGame.incrementTurnsElapsed()
     function drawCard(player){
         console.log('Draw Phase')
         //append random card from deck into hand
