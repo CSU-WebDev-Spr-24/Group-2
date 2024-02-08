@@ -1,5 +1,6 @@
 const readline = require('readline-sync')
 const Player = require('./Player')
+const attackPhase = require('./AttackPhase')
 
 module.exports = function mainLoop(currentGame){
         if (currentGame.turnsElapsed % 2 == 0){
@@ -14,6 +15,7 @@ module.exports = function mainLoop(currentGame){
         player.turn.setIsOver(false)
         while(player.turn.isOver == false){
             console.log(`It is ${player.playerID}'s turn...`)
+            console.log("Available commands are 'attack', 'view', 'play card', and 'quit'")
             var command = readline.question('What would you like to do?\n')
                 console.log(`You entered: ${command}!`);
                 if (command == 'view'){
@@ -24,6 +26,7 @@ module.exports = function mainLoop(currentGame){
                 }
                 else if (command == 'attack'){
                     console.log('You attack!!\n')
+                    attackPhase(currentGame)
                     console.log(`${player.playerID}'s turn is over...\n`)
                     player.turn.setIsOver(true)
                 }
