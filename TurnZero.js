@@ -36,8 +36,9 @@ function initDrawPhaseRandomizer(player){
             drawString = drawString.concat(', ');
         }
     }
-    for (let i = 0; i < 5; i++){
-        if (player.playerField.hand[i].supertype == 'Pokémon'){
+    //for (let i = 0; i < 5; i++){
+    for(eachCard of player.playerField.hand){
+        if (eachCard.supertype == 'Pokémon'){
             //console.log(`${drawString}`)
             goodDraw = true;
             return drawString;

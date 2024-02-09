@@ -1,7 +1,6 @@
 const readline = require('readline-sync')
 
 module.exports = function attackPhase(currentGame){
-    console.log("Attacker module active")
     if (currentGame.turnsElapsed % 2 == 0){
         var attacker = currentGame.player1
         var defender = currentGame.player2
@@ -26,7 +25,22 @@ module.exports = function attackPhase(currentGame){
     var attackChoice = getAttackChoice(attackerAttackOptions)
     for (let i = 0; i < attackerAttackOptions.length; i++){
         if(attackChoice == attackerAttackOptions[i].name){
-            calculateDamage(attackerAttackOptions[i], defenderPoke)
+            var knockOut = calculateDamage(attackerAttackOptions[i], defenderPoke)
+            if (knockOut){
+                //call force switch function
+                newActiveCard = forceSwap(defender)
+                if (currentGame.turnsElapsed % 2 == 0){
+                    currentGame.player2.playerField.setActive([newActiveCard, 0])
+                    console.log(`new active card: ${newActiveCard.name}`)
+                    var realCardArr = currentGame.player2.playerField.getActive()
+                    console.log(`real new card: ${realCardArr[0].name}`)
+                }
+                else{
+                    currentGame.player1.playerField.setActive([newActiveCard, 0])
+
+                }
+
+            }
         }
     }
 
@@ -41,8 +55,7 @@ module.exports = function attackPhase(currentGame){
             return command
         }
         else{
-            console.log(`That was a bad choice`)
-            console.log(`Attack phase over`)
+            console.log(`That attack missed!!!`);
         }
     }
 
@@ -53,6 +66,44 @@ module.exports = function attackPhase(currentGame){
         defenderPoke.setCardHp(calculatedHp)
         console.log(`${attack.name} does ${attack.damage} damage!`)
         console.log(`${defenderPoke.name} now has ${calculatedHp} HP`)
+        if (calculatedHp <= '0'){
+            console.log('knockout!!!!')
+            var knockOut = true;
+            return knockOut
+        }
+        else {
+            console.log('no knockout!!!!')
+            var knockOut = false
+            return knockOut;
+        }
+    }
+
+    function forceSwap(defender){
+        console.log(`${defender.playerID}'s active Pokemon has been knocked out!!!`)
+        console.log(`Here is Player ${defender.playerID}'s hand...`)
+        var handArr = []
+        for(eachCard of defender.playerField.hand){
+            console.log(`${eachCard.name}`)
+            handArr.push(eachCard.name)
+        }
+        var activePokeChosen = false;
+        while(activePokeChosen ==false){
+            activeChoice = readline.question(`Please choose a different Pokemon\n`)
+            if (handArr.includes(activeChoice)){
+                for(eachCard of defender.playerField.hand){
+                    if(activeChoice == eachCard.name){
+                        //this will set the card to undefined when tried to accessed out of this module
+                        //defender.playerField.setActive(eachCard)
+                        console.log(`${eachCard.name} has been chosen as the active Pokemon`)
+                        activePokeChosen = true;
+                        return eachCard
+                    }
+                }
+            }
+            else{
+                console.log('Invalid choice for active slot!!!')
+            }
+        }
     }
 
 }
