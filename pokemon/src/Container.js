@@ -11,9 +11,9 @@ export const Container = memo(function Container() {
                 <div className='col'></div>
                 <div className='col'>
                     <div style={{overflow: 'hidden', transform: 'scaleY(-1)'}} className="position-relative ">
-                        <Card url = "https://images.pokemontcg.io/base6/11_hires.png" />
-                        <Card url = "https://images.pokemontcg.io/base6/13_hires.png" />
-                        <Card url = "https://images.pokemontcg.io/base6/12_hires.png" />
+                        <Card url = "https://images.pokemontcg.io/base6/14_hires.png" />
+                        <Card url = "https://images.pokemontcg.io/base6/15_hires.png" />
+                        <Card url = "https://images.pokemontcg.io/base6/16_hires.png" />
                     </div>
                 </div>
                 <div className='col'></div>
