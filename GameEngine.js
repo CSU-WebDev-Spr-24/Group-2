@@ -21,7 +21,7 @@ const runGame = {
     initPlayerFields(player){
         player.playerField.setPlayerID(player.getPlayerID())
         //bench example: [[squirtle, energy, energy], [charmander, energy], [pidgey]]
-        player.playerField.setBench([[]])
+        player.playerField.setBench([])
         player.playerField.setHand([])
         player.playerField.setDeck(new deck())
         player.playerField.setDiscard([])
@@ -36,16 +36,20 @@ const runGame = {
         turnZero(currentGame.player1, currentGame.player2);
         //console.log(currentGame.player1.turn.isOver)
         while(currentGame.isGameOver != true){
-            console.log("Available commands are 'play turn' and 'quit'")
+            console.log("Available commands are 'play turn', 'skip', and 'quit'")
             var command = readline.question('What would you like to do?\n')
             if (command == 'play turn'){
                 turnLoop(currentGame)
+            }
+            if (command == 'skip'){
+                currentGame.incrementTurnsElapsed()
             }
             if (command == 'quit'){
                     currentGame.incrementTurnsElapsed()
                     currentGame.setIsGameOver(true)
             }
         }
+        console.log("The Game is now over!!!")
         console.log("This is just a proof of concept, so the game will now close")
     }
 }

@@ -1,8 +1,9 @@
 const readline = require('readline-sync')
 const Player = require('./Player')
 const attackPhase = require('./AttackPhase')
+const placeCardtoSlot = require('./PlaceCardtoSlot')
 
-module.exports = function mainLoop(currentGame){
+module.exports = function turnLoop(currentGame){
         if (currentGame.turnsElapsed % 2 == 0){
             var player = currentGame.player1
         }
@@ -22,13 +23,16 @@ module.exports = function mainLoop(currentGame){
                     console.log(player.playerField)
                 }
                 else if (command == 'play card'){
-                    console.log('you wanted to play a card huh')
+                    placeCardtoSlot(currentGame)
                 }
                 else if (command == 'attack'){
                     console.log('You attack!!\n')
-                    attackPhase(currentGame)
+                    gameEndingAttack = attackPhase(currentGame)
                     console.log(`${player.playerID}'s turn is over...\n`)
                     player.turn.setIsOver(true)
+                    if(gameEndingAttack == true){
+                        currentGame.setIsGameOver(true)
+                    }
                 }
                 else{
                     console.log('Invalid turn loop command!')

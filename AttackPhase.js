@@ -1,6 +1,7 @@
 const readline = require('readline-sync')
 
 module.exports = function attackPhase(currentGame){
+    var gameEndingAttack = false
     if (currentGame.turnsElapsed % 2 == 0){
         var attacker = currentGame.player1
         var defender = currentGame.player2
@@ -29,11 +30,15 @@ module.exports = function attackPhase(currentGame){
             if (knockOut){
                 //call force switch function
                 newActiveCard = forceSwap(defender)
+                if(newActiveCard == false){
+                    gameEndingAttack = true
+                    return gameEndingAttack
+                }
                 if (currentGame.turnsElapsed % 2 == 0){
                     currentGame.player2.playerField.setActive([newActiveCard, 0])
-                    console.log(`new active card: ${newActiveCard.name}`)
-                    var realCardArr = currentGame.player2.playerField.getActive()
-                    console.log(`real new card: ${realCardArr[0].name}`)
+                    //console.log(`new active card: ${newActiveCard.name}`)
+                    //var realCardArr = currentGame.player2.playerField.getActive()
+                    //console.log(`real new card: ${realCardArr[0].name}`)
                 }
                 else{
                     currentGame.player1.playerField.setActive([newActiveCard, 0])
@@ -80,23 +85,29 @@ module.exports = function attackPhase(currentGame){
 
     function forceSwap(defender){
         console.log(`${defender.playerID}'s active Pokemon has been knocked out!!!`)
-        console.log(`Here is Player ${defender.playerID}'s hand...`)
-        var handArr = []
-        for(eachCard of defender.playerField.hand){
-            console.log(`${eachCard.name}`)
-            handArr.push(eachCard.name)
+        console.log(`Here is Player ${defender.playerID}'s bench...`)
+        var benchArr = []
+        if(defender.playerField.bench.length == 0){
+            return false
+        }
+        for(eachSlot of defender.playerField.bench){
+            console.log(`${eachSlot[0].name}`)
+            benchArr.push(eachSlot[0].name)
         }
         var activePokeChosen = false;
         while(activePokeChosen ==false){
             activeChoice = readline.question(`Please choose a different Pokemon\n`)
             if (handArr.includes(activeChoice)){
-                for(eachCard of defender.playerField.hand){
-                    if(activeChoice == eachCard.name){
+                indexSlot = 0;
+                for(eachSlot of defender.playerField.bench){
+                    indexSlot = indexSlot + 1
+                    if(activeChoice == eachSlot[0].name){
                         //this will set the card to undefined when tried to accessed out of this module
                         //defender.playerField.setActive(eachCard)
-                        console.log(`${eachCard.name} has been chosen as the active Pokemon`)
+                        console.log(`${eachSlot[0].name} has been chosen as the active Pokemon`)
+                        defender.playerField.bench.splice(indexSlot, 1)
                         activePokeChosen = true;
-                        return eachCard
+                        return eachSlot[0]
                     }
                 }
             }
