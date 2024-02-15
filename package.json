@@ -1,7 +1,18 @@
 {
   "dependencies": {
+    "express": "^4.18.2",
     "pokemontcgsdk": "^2.0.0",
     "readline-sync": "^1.4.10",
     "yarn": "^1.22.21"
-  }
+  },
+  "name": "group-2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
