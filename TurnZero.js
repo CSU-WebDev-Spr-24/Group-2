@@ -63,6 +63,7 @@ function initializeActiveSlot(player){
     console.log(`${handString}`);
     activeSlotBool = false
     while(activeSlotBool == false){
+        // GETS USER INPUT
         chosenPokemonString = readline.question();
         pokemonHandNames = []
         var activePoke;

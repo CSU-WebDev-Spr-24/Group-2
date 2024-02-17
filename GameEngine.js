@@ -15,6 +15,11 @@ module.exports = function initializeGame(){
     currentGame = new game(player1, player2, 0, false)
     initPlayerFields(player1)
     initPlayerFields(player2)
+    console.log("Welcome to PokeTCG Prototype")
+    console.log("This is a text based version of the game")
+    console.log("\n")
+    console.log("The initial draw phase will now begin")
+    turnZero(currentGame.player1, currentGame.player2);
     gameLoop(currentGame)
 }
 
@@ -29,11 +34,11 @@ function initPlayerFields(player){
 }
 
 function gameLoop(currentGame){
-    console.log("Welcome to PokeTCG Prototype")
-    console.log("This is a text based version of the game")
-    console.log("\n")
-    console.log("The initial draw phase will now begin")
-    turnZero(currentGame.player1, currentGame.player2);
+    //console.log("Welcome to PokeTCG Prototype")
+    //console.log("This is a text based version of the game")
+    //console.log("\n")
+    //console.log("The initial draw phase will now begin")
+    //turnZero(currentGame.player1, currentGame.player2);
     //console.log(currentGame.player1.turn.isOver)
     while(currentGame.isGameOver != true){
         console.log("Available commands are 'play turn', 'skip', and 'quit'")
@@ -53,4 +58,4 @@ function gameLoop(currentGame){
     console.log("This is just a proof of concept, so the game will now close")
 }
 
-//let start = runGame.initialize()
+//let start = initializeGame()
