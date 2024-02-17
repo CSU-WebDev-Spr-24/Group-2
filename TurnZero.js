@@ -1,6 +1,12 @@
 const readline = require('readline-sync')
 
 module.exports = function turnZero(player1, player2) {
+    returnString = ""
+    goodDraw = false;
+    while (goodDraw == false){
+        returnString = initialDrawPhase(player1);
+    }
+    return returnString
     goodDraw = false;
     while (goodDraw == false){
         initialDrawPhase(player1);
@@ -15,12 +21,18 @@ module.exports = function turnZero(player1, player2) {
 }
 
 function initialDrawPhase(player){
-    console.log(`\nInitial draw phase for ${player.playerID}...`)
-    var drawString = initDrawPhaseRandomizer(player)
-    console.log(`You added this to your hand: ${drawString}!`);
-    console.log(`deck size is: ${currPlayerDeck.length}`)
+    drawString = ""
+    drawString = drawString.concact(`\nInitial draw phase for ${player.playerID}...`)
+    //console.log(`\nInitial draw phase for ${player.playerID}...`)
+    drawString = drawString.concat(initDrawPhaseRandomizer(player))
+    drawString = drawString.concact(`You added this to your hand: ${drawString}!`)
+    //console.log(`You added this to your hand: ${drawString}!`);
+    drawString = drawString.concact(`deck size is: ${currPlayerDeck.length}`)
+    //console.log(`deck size is: ${currPlayerDeck.length}`)
+    drawString = drawString.concact(`This is your hand: ${drawString}`)
     //console.log(`This is your hand: ${drawString}`)
-    console.log('\n')
+    //console.log('\n')
+    return drawString
 }
 
 function initDrawPhaseRandomizer(player){

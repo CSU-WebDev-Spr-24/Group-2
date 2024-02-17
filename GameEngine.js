@@ -8,19 +8,29 @@ const turnLoop = require('./TurnLoop')
 const turnZero = require('./TurnZero')
 
 //const runGame = {
-module.exports = function initializeGame(){
+export function initializeGame(){
     //add uuid functionality, right now just uses base values
     var player1 = new player(1234, new PlayerField(), new turn(1234, 'draw', false))
     var player2 = new player(5678, new PlayerField(), new turn(5678, 'draw', true))
     currentGame = new game(player1, player2, 0, false)
     initPlayerFields(player1)
     initPlayerFields(player2)
-    console.log("Welcome to PokeTCG Prototype")
-    console.log("This is a text based version of the game")
-    console.log("\n")
-    console.log("The initial draw phase will now begin")
-    turnZero(currentGame.player1, currentGame.player2);
-    gameLoop(currentGame)
+    var returnString = introduction()
+    //console.log(`return string from init game: ${returnString}`)
+    return returnString
+    // console.log("Welcome to PokeTCG Prototype")
+    // console.log("This is a text based version of the game")
+    // console.log("\n")
+    // console.log("The initial draw phase will now begin")
+
+    //comment these out while testing
+    //turnZero(currentGame.player1, currentGame.player2);
+    //gameLoop(currentGame)
+}
+
+export function runTurnZero(){
+    returnString = ""
+    returnString = returnString.concat(turnZero(player1, player2))
 }
 
 function initPlayerFields(player){
@@ -56,6 +66,19 @@ function gameLoop(currentGame){
     }
     console.log("The Game is now over!!!")
     console.log("This is just a proof of concept, so the game will now close")
+}
+
+
+
+//practice refactoring
+function introduction(){
+    returnString = ""
+    returnString = returnString.concat("Welcome to PokeTCG Prototype...\n")
+    returnString = returnString.concat("This is a text based version of the game...\n")
+    returnString = returnString.concat("The initial draw phase will now begin...\n")
+    returnString = returnString.concat("Press Submit to continue...\n")
+    //console.log(`return string from intro func ${returnString}`)
+    return returnString
 }
 
 //let start = initializeGame()
