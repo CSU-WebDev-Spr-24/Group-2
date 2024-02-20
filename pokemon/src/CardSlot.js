@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {useDrop} from 'react-dnd'
+import  Card  from './Card'
 import { ItemTypes } from './ItemTypes'
 const style = {
   height: '12rem',

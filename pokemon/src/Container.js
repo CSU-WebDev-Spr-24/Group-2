@@ -1,14 +1,17 @@
 import {memo} from 'react';
 import { Card } from './Card'
-import { CardSlot } from './CardSlot';
 import  Bench from './Bench';
 import Active from './Active';
+import { Hand } from './Hand';
+import { Button }  from './Button';
 
 export const Container = memo(function Container() {
     return (
         <div className='container-fluid '>
             <div className='row'>
-                <div className='col'></div>
+                <div className='col'>
+                    <Button textValue="Hello"/>
+                    </div>
                 <div className='col'>
                     <div style={{overflow: 'hidden', transform: 'scaleY(-1)'}} className="position-relative ">
                         <Card url = "https://images.pokemontcg.io/base6/14_hires.png" />
@@ -46,7 +49,7 @@ export const Container = memo(function Container() {
                 <div className='col'>
                     
                 </div>
-                
+               
             </div>
             <div className='row'>
                 <div className='col'>
@@ -62,9 +65,7 @@ export const Container = memo(function Container() {
             </div>
 
             <div style={{overflow: 'hidden', clear:'both'}} className="position-absolute top-100 start-50 translate-middle">
-                <Card url = "https://images.pokemontcg.io/base6/11_hires.png" />
-                <Card url = "https://images.pokemontcg.io/base6/13_hires.png" />
-                <Card url = "https://images.pokemontcg.io/base6/12_hires.png" />
+                <Hand />
             </div>
         </div>
     )

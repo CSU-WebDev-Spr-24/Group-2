@@ -1,6 +1,7 @@
 import React from 'react'
 import {useDrag} from 'react-dnd'
 import { ItemTypes } from './ItemTypes.js';
+import { Button } from 'bootstrap';
 const style = {
   borderRadius: '10px',
   marginRight: '0.5rem',
@@ -29,6 +30,8 @@ export const Card = function Card({url}) {
   return (
     <div ref={drag} style={{...style, opacity }} data-testid={`box`}>
         <img src={url} height={161} style={{borderRadius: 'inherit'}}></img>
+       
     </div>
+    
   )
 }

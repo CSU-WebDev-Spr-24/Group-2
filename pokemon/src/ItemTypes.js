@@ -1,3 +1,3 @@
 export const ItemTypes = {
-    POKEMON: 'pokemon'
-}
+    POKEMON: 'pokemon',
+};
