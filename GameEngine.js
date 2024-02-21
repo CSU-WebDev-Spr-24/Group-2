@@ -20,11 +20,11 @@ import { turnZero } from './TurnZero.js'
 
 let currentGame = new Game(null, null, 0 , false)
 
-class GameEngine{
-    constructor(currentGame){
-    this.currentGame = currentGame
-    }
-}
+// class GameEngine{
+//     constructor(currentGame){
+//     this.currentGame = currentGame
+//     }
+// }
 
 //const runGame = {
 export function initializeGame(){
@@ -50,7 +50,16 @@ export function initializeGame(){
     //gameLoop(currentGame)
 }
 
+//handlers for turnZero.js
 export function runTurnZero(){
+    let returnString = ""
+    let player1 = currentGame.player1
+    let player2 = currentGame.player2
+    returnString = returnString.concat(turnZero(player1, player2))
+    return returnString
+}
+
+export function turnZeroActiveSlot(){
     let returnString = ""
     let player1 = currentGame.player1
     let player2 = currentGame.player2
