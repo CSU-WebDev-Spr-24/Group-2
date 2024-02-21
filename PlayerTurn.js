@@ -1,4 +1,4 @@
-module.exports = class PlayerTurn {
+class PlayerTurn {
     constructor(playerID, turnPhase, isOver) {
         this.playerID = playerID
         // THERE ARE 4 PHASES OF A TURN IN POKETCG
@@ -32,3 +32,5 @@ module.exports = class PlayerTurn {
         this.isOver = isOver
     }
 }
+
+export default PlayerTurn

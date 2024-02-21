@@ -1,6 +1,6 @@
-const readline = require('readline-sync')
+import readline from 'readline-sync'
 
-module.exports = function placeEnergytoSlot(activePlayer, cardChosen){
+export function placeEnergytoSlot(activePlayer, cardChosen){
     var goodChoice = false
     while (goodChoice == false){
         var whereToPlace = readline.question(`Where would you like to place your Energy? Active or Bench?\n`)

@@ -1,8 +1,8 @@
-const readline = require('readline-sync')
-const itemEffects = require('./ItemEffects')
-const placeEnergytoSlot = require('./PlaceEnergytoSlot')
+import readline from 'readline-sync'
+import { useItemEffect } from './ItemEffects.js'
+import { placeEnergytoSlot } from './PlaceEnergytoSlot.js'
 
-module.exports = function placeCardtoSlot(currentGame){
+export function placeCardtoSlot(currentGame){
     if (currentGame.turnsElapsed % 2 == 0){
         var activePlayer = currentGame.player1
     }
@@ -36,7 +36,7 @@ module.exports = function placeCardtoSlot(currentGame){
         placeEnergytoSlot(activePlayer, cardChosen)
     }
     else if (cardType == "Trainer"){
-        itemEffects(currentGame, activePlayer)
+        useItemEffect(currentGame, activePlayer)
     }
     }
 

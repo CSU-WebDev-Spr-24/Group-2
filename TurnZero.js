@@ -1,11 +1,12 @@
-const readline = require('readline-sync')
+import readline from 'readline-sync'
 
-module.exports = function turnZero(player1, player2) {
-    returnString = ""
-    goodDraw = false;
-    while (goodDraw == false){
-        returnString = initialDrawPhase(player1);
-    }
+export function turnZero(player1, player2) {
+    let returnString = ""
+    // let goodDraw = false;
+    // while (goodDraw == false){
+    //     returnString = initialDrawPhase(player1);
+    // }
+    returnString = returnString.concat(initialDrawPhase(player1))
     return returnString
     goodDraw = false;
     while (goodDraw == false){
@@ -21,26 +22,27 @@ module.exports = function turnZero(player1, player2) {
 }
 
 function initialDrawPhase(player){
-    drawString = ""
-    drawString = drawString.concact(`\nInitial draw phase for ${player.playerID}...`)
+    let currPlayerDeck = player.playerField.deck.cardList
+    let drawString = ""
+    drawString = drawString.concat(`\nInitial draw phase for ${player.playerID}...`)
     //console.log(`\nInitial draw phase for ${player.playerID}...`)
     drawString = drawString.concat(initDrawPhaseRandomizer(player))
-    drawString = drawString.concact(`You added this to your hand: ${drawString}!`)
+    //drawString = drawString.concat(`You added this to your hand: ${drawString}!`)
     //console.log(`You added this to your hand: ${drawString}!`);
-    drawString = drawString.concact(`deck size is: ${currPlayerDeck.length}`)
+    drawString = drawString.concat(`...Deck size is: ${currPlayerDeck.length}`)
     //console.log(`deck size is: ${currPlayerDeck.length}`)
-    drawString = drawString.concact(`This is your hand: ${drawString}`)
+    //drawString = drawString.concat(`This is your hand: ${drawString}`)
     //console.log(`This is your hand: ${drawString}`)
     //console.log('\n')
     return drawString
 }
 
 function initDrawPhaseRandomizer(player){
-    currPlayerDeck = player.playerField.deck.cardList
-    var drawString = ''
+    let currPlayerDeck = player.playerField.deck.cardList
+    let drawString = ''
     for (let i = 0; i < 5; i++){
-        randomNum = Math.floor(Math.random() * (currPlayerDeck.length -1))
-        randCardFromDeck = currPlayerDeck[randomNum]
+        let randomNum = Math.floor(Math.random() * (currPlayerDeck.length -1))
+        let randCardFromDeck = currPlayerDeck[randomNum]
         player.playerField.appendHand(currPlayerDeck[randomNum])
         currPlayerDeck.splice(randomNum, 1)
         drawString = drawString.concat(randCardFromDeck.name)
@@ -49,10 +51,11 @@ function initDrawPhaseRandomizer(player){
         }
     }
     //for (let i = 0; i < 5; i++){
-    for(eachCard of player.playerField.hand){
+    for(let eachCard of player.playerField.hand){
         if (eachCard.supertype == 'Pokémon'){
             //console.log(`${drawString}`)
-            goodDraw = true;
+            //does this even work...is it out of scope????????????
+            //goodDraw = true;
             return drawString;
         }
         //this is not working

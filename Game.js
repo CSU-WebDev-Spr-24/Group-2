@@ -1,4 +1,4 @@
-module.exports = class Game {
+class Game {
     constructor(player1, player2, turnsElapsed, isGameOver){
         this.player1 = player1
         this.player2 = player2
@@ -42,3 +42,5 @@ module.exports = class Game {
         this.turnsElapsed = this.turnsElapsed + 1
     }
 }
+
+export default Game

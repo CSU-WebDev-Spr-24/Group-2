@@ -1,9 +1,9 @@
-const readline = require('readline-sync')
-const Player = require('./Player')
-const attackPhase = require('./AttackPhase')
-const placeCardtoSlot = require('./PlaceCardtoSlot')
+import readline from 'readline-sync'
+import Player from './Player.js'
+import { attackPhase } from './AttackPhase.js'
+import { placeCardtoSlot } from './PlaceCardtoSlot.js'
 
-module.exports = function turnLoop(currentGame){
+export function turnLoop(currentGame){
         if (currentGame.turnsElapsed % 2 == 0){
             var player = currentGame.player1
         }

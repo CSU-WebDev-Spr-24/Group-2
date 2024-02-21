@@ -1,21 +1,43 @@
-const player = require('./Player')
-const game = require('./Game')
-const deck = require('./DeckCreate')
-const PlayerField = require('./PlayerField')
-const turn = require('./PlayerTurn')
-const readline = require('readline-sync')
-const turnLoop = require('./TurnLoop')
-const turnZero = require('./TurnZero')
+// const player = require('./Player')
+// const game = require('./Game')
+// const deck = require('./DeckCreate')
+// const PlayerField = require('./PlayerField')
+// const turn = require('./PlayerTurn')
+// const readline = require('readline-sync')
+// const turnLoop = require('./TurnLoop')
+// const turnZero = require('./TurnZero')
+
+import readline from 'readline-sync'
+
+import Player from './Player.js'
+import Game from './Game.js'
+import Deck from './DeckCreate.js'
+import PlayerField from './PlayerField.js'
+import Turn from './PlayerTurn.js'
+//import readline from './readline-sync'
+import { turnLoop } from './TurnLoop.js'
+import { turnZero } from './TurnZero.js'
+
+let currentGame = new Game(null, null, 0 , false)
+
+class GameEngine{
+    constructor(currentGame){
+    this.currentGame = currentGame
+    }
+}
 
 //const runGame = {
 export function initializeGame(){
     //add uuid functionality, right now just uses base values
-    var player1 = new player(1234, new PlayerField(), new turn(1234, 'draw', false))
-    var player2 = new player(5678, new PlayerField(), new turn(5678, 'draw', true))
-    currentGame = new game(player1, player2, 0, false)
+    var player1 = new Player(1234, new PlayerField(), new Turn(1234, 'draw', false))
+    var player2 = new Player(5678, new PlayerField(), new Turn(5678, 'draw', true))
+    //var currentGame = new Game(player1, player2, 0, false)
+    //let gameEngine = new GameEngine(currentGame)
+    currentGame.setPlayer1(player1)
+    currentGame.setPlayer2(player2)
     initPlayerFields(player1)
     initPlayerFields(player2)
-    var returnString = introduction()
+    let returnString = introduction()
     //console.log(`return string from init game: ${returnString}`)
     return returnString
     // console.log("Welcome to PokeTCG Prototype")
@@ -29,8 +51,11 @@ export function initializeGame(){
 }
 
 export function runTurnZero(){
-    returnString = ""
+    let returnString = ""
+    let player1 = currentGame.player1
+    let player2 = currentGame.player2
     returnString = returnString.concat(turnZero(player1, player2))
+    return returnString
 }
 
 function initPlayerFields(player){
@@ -38,7 +63,7 @@ function initPlayerFields(player){
     //bench example: [[squirtle, energy, energy], [charmander, energy], [pidgey]]
     player.playerField.setBench([])
     player.playerField.setHand([])
-    player.playerField.setDeck(new deck())
+    player.playerField.setDeck(new Deck())
     player.playerField.setDiscard([])
     player.playerField.setActive([[]])
 }
@@ -72,7 +97,7 @@ function gameLoop(currentGame){
 
 //practice refactoring
 function introduction(){
-    returnString = ""
+    let returnString = ""
     returnString = returnString.concat("Welcome to PokeTCG Prototype...\n")
     returnString = returnString.concat("This is a text based version of the game...\n")
     returnString = returnString.concat("The initial draw phase will now begin...\n")

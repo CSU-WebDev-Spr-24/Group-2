@@ -1,11 +1,13 @@
-var fs = require('fs');
-const { json } = require('stream/consumers');
+//const fs = require('fs');
+//import fs from 'fs'
+//const { json } = require('stream/consumers');
 // CARD ARRAY IS JSON FORMAT - [ {OBJECT}, {OBEJCT}]
-var cardArray = require('./cardbase.json')
-const card = require('./Card')
+//var cardArray = require('./cardbase.json')
+import cardArray from './cardbase.json' with { type: "json" }
+import Card from './Card.js'
 var playerDeck = []
 
-module.exports = class Deck {
+class Deck {
     constructor(){
         this.cardList = createDeck.createCard()
     }
@@ -14,8 +16,8 @@ module.exports = class Deck {
 
 const createDeck = {
     createCard() {
-        for (eachCard in cardArray){
-            gameCard = new card(cardArray[eachCard].id, cardArray[eachCard].name, cardArray[eachCard].supertype,
+        for (let eachCard in cardArray){
+            let gameCard = new Card(cardArray[eachCard].id, cardArray[eachCard].name, cardArray[eachCard].supertype,
                 cardArray[eachCard].hp, cardArray[eachCard].attacks, cardArray[eachCard].weaknesses,
                 cardArray[eachCard].retreatCost, cardArray[eachCard].images)
             playerDeck.push(gameCard)
@@ -33,5 +35,5 @@ const createDeck = {
 }
 
 
-
+export default Deck
 //let start = createDeck.createCard()

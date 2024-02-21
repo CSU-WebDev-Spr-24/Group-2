@@ -1,4 +1,4 @@
-module.exports = class Player {
+class Player {
     constructor(playerID, playerField, turn) {
         this.playerID = playerID
         this.playerField = playerField
@@ -21,3 +21,5 @@ module.exports = class Player {
         this.turn = turn
     }
 }
+
+export default Player

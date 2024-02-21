@@ -1,10 +1,10 @@
-var express = require('express');
+import express from 'express'
 var app = express();
 const port = 3000
 //const initializeGame = require('./GameEngine')
-var bodyParser = require('body-parser')
-import initializeGame from './GameEngine.js'
-import runTurnZero from './GameEngine.js'
+import  bodyParser from 'body-parser'
+import { initializeGame } from './GameEngine.js'
+import { runTurnZero } from './GameEngine.js'
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json({}))
@@ -17,12 +17,12 @@ app.get('/', (req, res) => {
 })
 
 app.get('/introduction', (req, res) => {
-    gamePrompt = initializeGame()
+    let gamePrompt = initializeGame()
     res.render('introduction.ejs', {"gamePrompt": gamePrompt})
 })
 
 app.get('/turn-zero', (req, res) => {
-    gamePrompt= runTurnZero()
+    let gamePrompt= runTurnZero()
     res.render('turn-zero.ejs', {"gamePrompt": gamePrompt})
 })
 

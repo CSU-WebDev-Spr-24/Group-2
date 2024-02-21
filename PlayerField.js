@@ -1,4 +1,4 @@
-module.exports = class PlayerField {
+class PlayerField {
     constructor (playerId, hand, bench, active, deck, discard) {
         this.playerId = playerId
         this.hand = hand
@@ -64,3 +64,5 @@ module.exports = class PlayerField {
         this.bench.push(card)
     }
 }
+
+export default PlayerField

@@ -1,6 +1,6 @@
-const readline = require('readline-sync')
+import readline from 'readline-sync'
 
-module.exports = function attackPhase(currentGame){
+export function attackPhase(currentGame){
     var gameEndingAttack = false
     if (currentGame.turnsElapsed % 2 == 0){
         var attacker = currentGame.player1

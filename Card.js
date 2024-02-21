@@ -1,4 +1,4 @@
-module.exports = class Card {
+class Card {
     //all data types are named from the Pokemon TCG API
     constructor(id, name, supertype, hp, attacks, weaknesses, retreatCost, images){
         //string ""xy1-1""
@@ -82,3 +82,5 @@ module.exports = class Card {
     }
 
 }
+
+export default Card

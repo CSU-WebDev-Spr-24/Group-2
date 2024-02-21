@@ -1,4 +1,4 @@
-module.exports = function useItemEffect(currentGame, activePlayer){
+export function useItemEffect(currentGame, activePlayer){
     //currently, all item effects use potion effect for simplicity
     console.log("\nPreparing to use potion")
     activeSlot = activePlayer.playerField.getActive()
