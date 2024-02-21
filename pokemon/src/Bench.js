@@ -1,4 +1,5 @@
 import { CardSlot } from "./CardSlot";
+import React from "react";
 const style = {
     height: '12.4rem',
     width: 'auto',

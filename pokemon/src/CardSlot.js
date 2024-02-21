@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {useDrop} from 'react-dnd'
-import  Card  from './Card'
+import  { Card }  from './Card'
 import { ItemTypes } from './ItemTypes'
 const style = {
   height: '12rem',
@@ -34,6 +34,7 @@ export const CardSlot = (Card) => {
   return (
     <div ref={drop} style={{...style, backgroundColor }}  data-testid="cardslot">
       {isActive ? 'Release to drop!' : "Drag a card here"}
+      {Card.url ? <Card  url = {Card.url}/> : ''}
     </div>
   )
 }
