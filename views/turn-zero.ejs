@@ -20,10 +20,10 @@
         <h1>Enter your command...</h1>
         <input type="text" class="form-control" name="command">
         <script>
-            function yourFunction(){
+            function pathCommand(){
             var action_src = "http://localhost/turn-zero/" + document.getElementsById("command").value;
-            var your_form = document.getElementById('command');
-            your_form.action = action_src
+            var user_form = document.getElementById('command');
+            user_form.action = action_src
             }
         </script>
         <button type="button" class="btn btn-primary" onclick="yourFunction()">Submit</button>
