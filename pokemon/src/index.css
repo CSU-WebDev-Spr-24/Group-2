@@ -6,7 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #252323;
-  background: url('https://product-images.tcgplayer.com/520352.jpg') no-repeat center center fixed;
+  /* background: url('https://product-images.tcgplayer.com/520352.jpg') no-repeat center center fixed; */
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
@@ -15,4 +15,48 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.modal-content {
+  background: rgb(0 0 0 / 0%);
+  border: 0px;
+}
+
+.modal-header {
+  border: 0px;
+  height: 0px;
+  padding: 0px;
+}
+.btn-close {
+  color: #fff;
+}
+
+.opponent-hand {
+  overflow: hidden;
+  transform: scaleY(-1) translate(0px, 9vh);
+}
+.opponent-bench{
+  transform: translate(0px, -8vh);
+}
+
+.actives {
+  transform: translate(0px, -4vh);
+}
+.title {
+  font-size: xx-large;
+}
+
+.btn {
+  font-size: xx-large;
+  align-self: center;
+}
+
+.cardModal {
+  overflow: scroll;
+  align-content: center;
+}
+
+.modal-body {
+  width: 40vw;
+  align-items: center;
 }

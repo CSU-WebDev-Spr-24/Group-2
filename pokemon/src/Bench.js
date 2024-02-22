@@ -18,7 +18,7 @@ const Bench = () => {
         <div className="col"><CardSlot /></div>
         <div className="col"><CardSlot /></div>
 
-        <div className="position-absolute top-100 start-100 translate-middle">BENCH</div>
+        <div className="position-absolute top-100 start-100 title translate-middle-y">BENCH</div>
     </div>
     )
 }

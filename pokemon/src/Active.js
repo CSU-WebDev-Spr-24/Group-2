@@ -10,7 +10,7 @@ const style = {
 const Active = () => {
     return (
     <div style={{...style}} className="position-relative">
-        <div className="position-absolute top-100 start-100 translate-middle">ACTIVE</div>
+        <div className="position-absolute top-100 start-100 title translate-middle-y">ACTIVE</div>
     <CardSlot />
     </div>
     )

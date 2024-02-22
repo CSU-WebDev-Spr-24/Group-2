@@ -15,7 +15,7 @@ const style = {
   float: 'left'
 }
 
-export const CardSlot = (Card) => {
+export const CardSlot = ({card, player}) => {
   const [{canDrop, isOver}, drop] = useDrop(() => ({
     accept: ItemTypes.POKEMON,
     drop: () => ({name: 'CardSlot'}),

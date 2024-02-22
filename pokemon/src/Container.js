@@ -7,26 +7,25 @@ import { Button }  from './Button';
 
 export const Container = memo(function Container() {
     return (
-        <div className='container-fluid '>
+        <div className='container-fluid'>
             <div className='row'>
                 <div className='col'>
-                    <Button textValue="Hello"/>
                     </div>
                 <div className='col'>
-                    <div style={{overflow: 'hidden', transform: 'scaleY(-1)'}} className="position-relative ">
-                        <Card url = "https://images.pokemontcg.io/base6/14_hires.png" />
-                        <Card url = "https://images.pokemontcg.io/base6/15_hires.png" />
-                        <Card url = "https://images.pokemontcg.io/base6/16_hires.png" />
+                    <div className=" opponent-hand">
+                        <Card url = "https://images.pokemontcg.io/base6/14_hires.png" flippedOver = 'true'/>
+                        <Card url = "https://images.pokemontcg.io/base6/15_hires.png" flippedOver = 'true'/>
+                        <Card url = "https://images.pokemontcg.io/base6/16_hires.png" flippedOver = 'true'/>
                     </div>
                 </div>
                 <div className='col'></div>
             </div>
-            <div className='row'>
+            <div className='row moveUp'>
                 <div className='col'>
                     <div id='opponent-prize'></div>
                 </div>
                 <div className='col-6'>
-                    <div id='opponent'>
+                    <div className='opponent-bench'>
                         <Bench />
                     </div>
                 </div>
@@ -36,8 +35,8 @@ export const Container = memo(function Container() {
                 </div>
                 
             </div>
-            <div className='row'>
-                <div className='col'>
+            <div className='row actives'>
+                <div className='col-4'>
 
                 </div>
                 <div className='col-3'>
