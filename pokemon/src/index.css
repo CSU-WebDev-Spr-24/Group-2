@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #252323;
+  background-color: #141B41;
   /* background: url('https://product-images.tcgplayer.com/520352.jpg') no-repeat center center fixed; */
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -98,4 +98,8 @@ code {
   text-decoration-line: none;
   transform: translate(500px 50px);
   -webkit-text-stroke: 5px #0072bb;
+}
+
+.modalImg {
+  border-radius: 15px;
 }

@@ -43,7 +43,7 @@ export const Card = function Card(props) {
   const handleShow = () => setShow(true);
   return (
     <div ref={drag} style={{...style, opacity }} data-testid={`box`}>
-        <img src={props.url} height={161} style={{borderRadius: `inherit`}} onClick={handleShow}></img>
+        <img src={props.url} height={161} style={{borderRadius: 'inherit'}} onClick={handleShow}></img>
 
         <Modal show={show} onHide={handleClose} className='cardModal'>
           <Modal.Header closeButton>
@@ -51,31 +51,20 @@ export const Card = function Card(props) {
           <Modal.Body>
             <Container fluid>
               <Row>
-                
                 <Col>
-
                   <div className='d-grid gap-5'>
-                        <Button variant="secondary" size="lg" onClick={handleClick}>
+                        <Button variant="primary" size="lg" onClick={handleClick}>
                         Move 1
                       </Button>
                       <Button variant="primary" size="lg" onClick={handleClick}>
                         Move 2
                       </Button></div>
-                      
-                
-                
                 </Col>
                 <Col className='col-9'>
-                <img src={props.url} className='h-75 d-inline'></img>
+                <img src={props.url} className='h-75 d-inline modalImg'></img>
                 </Col>
               </Row>
-              
-                      
             </Container>
-            
-              
-            
-            
           </Modal.Body>
       </Modal>
     </div>

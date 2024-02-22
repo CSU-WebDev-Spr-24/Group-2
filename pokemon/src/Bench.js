@@ -4,7 +4,7 @@ const style = {
     height: '12.4rem',
     width: 'auto',
     margin: '1rem',
-    backgroundColor: '#FF8600',
+    backgroundColor: 'rgb(11 100 200 / 100%)',
     borderRadius: '15px',
     justifyItems: 'space-between',
     color: 'white'
