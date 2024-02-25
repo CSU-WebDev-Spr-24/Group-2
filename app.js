@@ -3,7 +3,7 @@ var app = express();
 const port = 3000
 //const initializeGame = require('./GameEngine')
 import  bodyParser from 'body-parser'
-import { getDrawPhase, getTurnCommands, initializeGame, getTurnLoopCommands, getAttackStringPrompt } from './GameEngine.js'
+import { getDrawPhase, getTurnCommands, initializeGame, getTurnLoopCommands, getAttackStringPrompt, getAttackResultsPrompt } from './GameEngine.js'
 import { runTurnZeroPlayerOne, runTurnZeroPlayerTwo } from './GameEngine.js'
 import { turnZeroActiveSlotPlayerOne, turnZeroActiveSlotPlayerTwo } from './GameEngine.js'
 
@@ -81,10 +81,27 @@ app.post('/turn-loop-commands', (req, res) => {
     }
 })
 
-app.get('/attack-results', (req, res) => {
-    let gamePrompt = getTurnLoopCommands()
-    res.render('attack-results', {"gamePrompt": gamePrompt} )
+app.post('/attacker-options', (req, res) => {
+    let promptArr = getAttackResultsPrompt(req.body.command)
+    let gamePrompt = promptArr[0]
+    let knockoutBool = promptArr[1]
+    if (knockoutBool == false){
+        res.render('attack-results.ejs', {"gamePrompt": gamePrompt} )
+    }
+    else{
+        //forceswap and stuff
+    }
 })
+
+app.get('/turn-loop-complete', (req, res) => {
+    res.render('turn-loop-complete')
+})
+
+
+// app.get('/attack-results', (req, res) => {
+//     let gamePrompt = getAttackResultsPrompt()
+//     res.render('attack-results', {"gamePrompt": gamePrompt} )
+// })
 
 
 

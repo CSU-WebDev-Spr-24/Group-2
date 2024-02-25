@@ -73,6 +73,48 @@ export function getAttackString(currentGame){
 
 }
 
+export function damagePhase(attackName, currentGame){
+    let knockOut = false
+    let returnArr = []
+    let returnString = ''
+    returnArr[0] = returnString
+    returnArr[1] = knockOut
+    if (currentGame.turnsElapsed % 2 == 0){
+        var attacker = currentGame.player1
+        var defender = currentGame.player2
+    }
+    else{
+        var attacker = currentGame.player2
+        var defender = currentGame.player1
+    }
+    let attackerActive = attacker.playerField.active
+    let defenderActive = defender.playerField.active
+    var defenderPoke = defenderActive[0]
+    let attackerAttackOptions = attackerActive[0].attacks
+    for (let i = 0; i < attackerAttackOptions.length; i++){
+        if(attackName == attackerAttackOptions[i].name){
+            var attack = attackerAttackOptions[i]
+        }
+    }
+    //
+    var calculatedHp = defenderPoke.hp - attack.damage
+    defenderPoke.setCardHp(calculatedHp)
+    returnString = returnString.concat(`${attack.name} does ${attack.damage} damage!`)
+    returnString = returnString.concat(`${defenderPoke.name} now has ${calculatedHp} HP`)
+    if (calculatedHp <= '0'){
+        returnString = returnString.concat('...knockout!!!!')
+        knockOut = true;
+        returnArr[1] = knockOut
+    }
+    else {
+        returnString = returnString.concat('...no knockout!!!!')
+        knockOut = false
+        returnArr[1] = knockOut
+    }
+    returnArr[0] = returnString
+    return returnArr
+}
+
 function getAttackChoice(attackerAttackOptions){
     var attackStringArr = []
     for (let i = 0; i < attackerAttackOptions.length; i++){

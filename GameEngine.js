@@ -18,7 +18,7 @@ import Turn from './PlayerTurn.js'
 import { turnLoop, drawPhase, turnLoopCommands } from './TurnLoop.js'
 import { turnZeroPlayerOne, turnZeroPlayerTwo } from './TurnZero.js'
 import { initializeActiveSlot} from './TurnZero.js'
-import { getAttackString } from './AttackPhase.js'
+import { damagePhase, getAttackString } from './AttackPhase.js'
 
 let currentGame = new Game(null, null, 0 , false)
 
@@ -81,7 +81,14 @@ export function turnZeroActiveSlotPlayerTwo(command){
 }
 
 export function getTurnCommands(){
-    let returnString = ""
+    let returnString = ''
+    if (currentGame.turnsElapsed % 2 == 0){
+        var player = currentGame.player1
+    }
+    else{
+        var player = currentGame.player2
+    }
+    returnString = returnString.concat(`It about to be player ${player.playerID}'s turn...`)
     returnString = returnString.concat("Available Options are: play turn, skip, or quit")
     return returnString
 }
@@ -136,6 +143,16 @@ export function getAttackStringPrompt(){
     let returnString = ''
     returnString = returnString.concat(getAttackString(currentGame))
     return returnString
+}
+
+export function getAttackResultsPrompt(attackName){
+    //game prompt at [0], knockout bool at [1]
+    let returnArr = []
+    let returnString = ''
+    let knockout = false
+    returnArr = damagePhase(attackName, currentGame)
+    currentGame.incrementTurnsElapsed()
+    return returnArr
 }
 
 function initPlayerFields(player){
