@@ -15,8 +15,10 @@ import Deck from './DeckCreate.js'
 import PlayerField from './PlayerField.js'
 import Turn from './PlayerTurn.js'
 //import readline from './readline-sync'
-import { turnLoop } from './TurnLoop.js'
-import { turnZero } from './TurnZero.js'
+import { turnLoop, drawPhase, turnLoopCommands } from './TurnLoop.js'
+import { turnZeroPlayerOne, turnZeroPlayerTwo } from './TurnZero.js'
+import { initializeActiveSlot} from './TurnZero.js'
+import { getAttackString } from './AttackPhase.js'
 
 let currentGame = new Game(null, null, 0 , false)
 
@@ -51,19 +53,88 @@ export function initializeGame(){
 }
 
 //handlers for turnZero.js
-export function runTurnZero(){
+export function runTurnZeroPlayerOne(){
     let returnString = ""
     let player1 = currentGame.player1
+    returnString = returnString.concat(turnZeroPlayerOne(player1))
+    return returnString
+}
+export function runTurnZeroPlayerTwo(){
+    let returnString = ""
     let player2 = currentGame.player2
-    returnString = returnString.concat(turnZero(player1, player2))
+    returnString = returnString.concat(turnZeroPlayerTwo(player2))
     return returnString
 }
 
-export function turnZeroActiveSlot(){
+export function turnZeroActiveSlotPlayerOne(command){
     let returnString = ""
     let player1 = currentGame.player1
+    returnString = returnString.concat(initializeActiveSlot(player1, command))
+    return returnString
+}
+
+export function turnZeroActiveSlotPlayerTwo(command){
+    let returnString = ""
     let player2 = currentGame.player2
-    returnString = returnString.concat(turnZero(player1, player2))
+    returnString = returnString.concat(initializeActiveSlot(player2, command))
+    return returnString
+}
+
+export function getTurnCommands(){
+    let returnString = ""
+    returnString = returnString.concat("Available Options are: play turn, skip, or quit")
+    return returnString
+}
+
+export function getDrawPhase(){
+    let returnString = ''
+    returnString =  returnString.concat(drawPhase(currentGame))
+    return returnString
+}
+
+export function getTurnLoopCommands(){
+    let returnString = ''
+    if (currentGame.turnsElapsed % 2 == 0){
+        var player = currentGame.player1
+    }
+    else{
+        var player = currentGame.player2
+    }
+    returnString = returnString.concat(`It is ${player.playerID}'s turn...`)
+    return returnString.concat(turnLoopCommands())
+}
+
+export function turnLoopPlayerOne(command){
+    let returnString = ''
+    if (command == 'play turn'){
+        returnString = returnString.concat(turnLoop(currentGame))
+        return returnString
+    }
+    if (command == 'skip'){
+        currentGame.incrementTurnsElapsed()
+    }
+    if (command == 'quit'){
+            currentGame.incrementTurnsElapsed()
+            currentGame.setIsGameOver(true)
+    }
+}
+
+export function turnLoopPlayerTwo(command){
+    if (command == 'play turn'){
+        turnLoop(currentGame)
+    }
+    if (command == 'skip'){
+        currentGame.incrementTurnsElapsed()
+    }
+    if (command == 'quit'){
+            currentGame.incrementTurnsElapsed()
+            currentGame.setIsGameOver(true)
+    }
+}
+
+export function getAttackStringPrompt(){
+    let returnString = ''
+    returnString = returnString.concat(getAttackString(currentGame))
     return returnString
 }
 
@@ -110,7 +181,7 @@ function introduction(){
     returnString = returnString.concat("Welcome to PokeTCG Prototype...\n")
     returnString = returnString.concat("This is a text based version of the game...\n")
     returnString = returnString.concat("The initial draw phase will now begin...\n")
-    returnString = returnString.concat("Press Submit to continue...\n")
+    returnString = returnString.concat("Press Continue to start...\n")
     //console.log(`return string from intro func ${returnString}`)
     return returnString
 }

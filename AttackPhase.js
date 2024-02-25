@@ -48,73 +48,96 @@ export function attackPhase(currentGame){
             }
         }
     }
+}
 
-    function getAttackChoice(attackerAttackOptions){
-        var attackStringArr = []
-        for (let i = 0; i < attackerAttackOptions.length; i++){
-            console.log(`Attack: ${attackerAttackOptions[i].name} | Damage: ${attackerAttackOptions[i].damage}\n`)
-            attackStringArr.push(attackerAttackOptions[i].name)
-        }
-        var command = readline.question('What attack do you want to choose?\n')
-        if (attackStringArr.includes(command)){
-            return command
-        }
-        else{
-            console.log(`That attack missed!!!`);
-        }
+export function getAttackString(currentGame){
+    let returnString = ''
+    if (currentGame.turnsElapsed % 2 == 0){
+        var attacker = currentGame.player1
+        var defender = currentGame.player2
     }
-
-    function calculateDamage(attack, defenderPoke){
-        //attack attack.name does attack.damage damage!!!
-        //defenderPoke.name now has caluclatedHp!
-        var calculatedHp = defenderPoke.hp - attack.damage
-        defenderPoke.setCardHp(calculatedHp)
-        console.log(`${attack.name} does ${attack.damage} damage!`)
-        console.log(`${defenderPoke.name} now has ${calculatedHp} HP`)
-        if (calculatedHp <= '0'){
-            console.log('knockout!!!!')
-            var knockOut = true;
-            return knockOut
-        }
-        else {
-            console.log('no knockout!!!!')
-            var knockOut = false
-            return knockOut;
-        }
+    else{
+        var attacker = currentGame.player2
+        var defender = currentGame.player1
     }
-
-    function forceSwap(defender){
-        console.log(`${defender.playerID}'s active Pokemon has been knocked out!!!`)
-        console.log(`Here is Player ${defender.playerID}'s bench...`)
-        var benchArr = []
-        if(defender.playerField.bench.length == 0){
-            return false
-        }
-        for(eachSlot of defender.playerField.bench){
-            console.log(`${eachSlot[0].name}`)
-            benchArr.push(eachSlot[0].name)
-        }
-        var activePokeChosen = false;
-        while(activePokeChosen ==false){
-            activeChoice = readline.question(`Please choose a different Pokemon\n`)
-            if (handArr.includes(activeChoice)){
-                indexSlot = 0;
-                for(eachSlot of defender.playerField.bench){
-                    indexSlot = indexSlot + 1
-                    if(activeChoice == eachSlot[0].name){
-                        //this will set the card to undefined when tried to accessed out of this module
-                        //defender.playerField.setActive(eachCard)
-                        console.log(`${eachSlot[0].name} has been chosen as the active Pokemon`)
-                        defender.playerField.bench.splice(indexSlot, 1)
-                        activePokeChosen = true;
-                        return eachSlot[0]
-                    }
-                }
-            }
-            else{
-                console.log('Invalid choice for active slot!!!')
-            }
-        }
+    let attackerActive = attacker.playerField.active
+    let defenderActive = defender.playerField.active
+    returnString = returnString.concat(`${attackerActive[0].name} has attacks...`)
+    let attackerAttackOptions = attackerActive[0].attacks
+    var attackStringArr = []
+    for (let i = 0; i < attackerAttackOptions.length; i++){
+        returnString = returnString.concat(`Attack: ${attackerAttackOptions[i].name} | Damage: ${attackerAttackOptions[i].damage}... `)
+        attackStringArr.push(attackerAttackOptions[i].name)
     }
+    return returnString
 
 }
+
+function getAttackChoice(attackerAttackOptions){
+    var attackStringArr = []
+    for (let i = 0; i < attackerAttackOptions.length; i++){
+        console.log(`Attack: ${attackerAttackOptions[i].name} | Damage: ${attackerAttackOptions[i].damage}\n`)
+        attackStringArr.push(attackerAttackOptions[i].name)
+    }
+    var command = readline.question('What attack do you want to choose?\n')
+    if (attackStringArr.includes(command)){
+        return command
+    }
+    else{
+        console.log(`That attack missed!!!`);
+    }
+}
+
+function calculateDamage(attack, defenderPoke){
+    //attack attack.name does attack.damage damage!!!
+    //defenderPoke.name now has caluclatedHp!
+    var calculatedHp = defenderPoke.hp - attack.damage
+    defenderPoke.setCardHp(calculatedHp)
+    console.log(`${attack.name} does ${attack.damage} damage!`)
+    console.log(`${defenderPoke.name} now has ${calculatedHp} HP`)
+    if (calculatedHp <= '0'){
+        console.log('knockout!!!!')
+        var knockOut = true;
+        return knockOut
+    }
+    else {
+        console.log('no knockout!!!!')
+        var knockOut = false
+        return knockOut;
+    }
+}
+
+function forceSwap(defender){
+    console.log(`${defender.playerID}'s active Pokemon has been knocked out!!!`)
+    console.log(`Here is Player ${defender.playerID}'s bench...`)
+    var benchArr = []
+    if(defender.playerField.bench.length == 0){
+        return false
+    }
+    for(eachSlot of defender.playerField.bench){
+        console.log(`${eachSlot[0].name}`)
+        benchArr.push(eachSlot[0].name)
+    }
+    var activePokeChosen = false;
+    while(activePokeChosen ==false){
+        activeChoice = readline.question(`Please choose a different Pokemon\n`)
+        if (handArr.includes(activeChoice)){
+            indexSlot = 0;
+            for(eachSlot of defender.playerField.bench){
+                indexSlot = indexSlot + 1
+                if(activeChoice == eachSlot[0].name){
+                    //this will set the card to undefined when tried to accessed out of this module
+                    //defender.playerField.setActive(eachCard)
+                    console.log(`${eachSlot[0].name} has been chosen as the active Pokemon`)
+                    defender.playerField.bench.splice(indexSlot, 1)
+                    activePokeChosen = true;
+                    return eachSlot[0]
+                }
+            }
+        }
+        else{
+            console.log('Invalid choice for active slot!!!')
+        }
+    }
+}
+

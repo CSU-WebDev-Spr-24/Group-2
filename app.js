@@ -3,8 +3,9 @@ var app = express();
 const port = 3000
 //const initializeGame = require('./GameEngine')
 import  bodyParser from 'body-parser'
-import { initializeGame } from './GameEngine.js'
-import { runTurnZero } from './GameEngine.js'
+import { getDrawPhase, getTurnCommands, initializeGame, getTurnLoopCommands, getAttackStringPrompt } from './GameEngine.js'
+import { runTurnZeroPlayerOne, runTurnZeroPlayerTwo } from './GameEngine.js'
+import { turnZeroActiveSlotPlayerOne, turnZeroActiveSlotPlayerTwo } from './GameEngine.js'
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json({}))
@@ -21,10 +22,71 @@ app.get('/introduction', (req, res) => {
     res.render('introduction.ejs', {"gamePrompt": gamePrompt})
 })
 
-app.get('/turn-zero', (req, res) => {
-    let gamePrompt= runTurnZero()
-    res.render('turn-zero.ejs', {"gamePrompt": gamePrompt})
+app.get('/turn-zero/player1', (req, res) => {
+    let gamePrompt = runTurnZeroPlayerOne()
+    res.render('turn-zero-player1.ejs', {"gamePrompt": gamePrompt})
 })
+
+app.post('/turn-zero/player1', (req, res) => {
+    //console.log(req.body) will log body object and the pair { command: Squirtle }
+    console.log(req.body.command)
+    let gamePrompt = turnZeroActiveSlotPlayerOne(req.body.command)
+    res.render('turn-zero-player1.ejs', {"gamePrompt": gamePrompt})
+})
+
+app.get('/turn-zero/player2', (req, res) => {
+    let gamePrompt = runTurnZeroPlayerTwo()
+    res.render('turn-zero-player2.ejs', {"gamePrompt": gamePrompt})
+})
+
+app.post('/turn-zero/player2', (req, res) => {
+    //console.log(req.body) will log body object and the pair { command: Squirtle }
+    console.log(req.body.command)
+    let gamePrompt = turnZeroActiveSlotPlayerTwo(req.body.command)
+    res.render('turn-zero-player2.ejs', {"gamePrompt": gamePrompt})
+})
+
+app.get('/turn-zero/complete', (req, res) => {
+    res.render('turn-zero-complete.ejs')
+})
+
+app.get('/pre-turn-commands', (req, res) => {
+    let gamePrompt = getTurnCommands()
+    res.render('pre-turn-commands.ejs', {"gamePrompt": gamePrompt})
+})
+
+app.post('/pre-turn-commands', (req, res) => {
+    console.log(req.body.command)
+    if(req.body.command == 'play turn'){
+        let gamePrompt = getDrawPhase(req.body.command)
+        res.render('draw-phase.ejs', {"gamePrompt": gamePrompt})
+    }
+    //res.render('draw-phase.ejs', {"gamePrompt": gamePrompt})
+})
+
+// app.get('/draw-phase', (req, res) => {
+//     let gamePrompt = getDrawPhase()
+//     res.render('draw-phase.ejs', {"gamePrompt": gamePrompt} )
+// })
+
+app.get('/turn-loop-commands', (req, res) => {
+    let gamePrompt = getTurnLoopCommands()
+    res.render('turn-loop-commands', {"gamePrompt": gamePrompt} )
+})
+
+app.post('/turn-loop-commands', (req, res) => {
+    if((req.body.command == 'attack')){
+        let gamePrompt = getAttackStringPrompt()
+        res.render('attacker-options.ejs', {"gamePrompt": gamePrompt} )
+    }
+})
+
+app.get('/attack-results', (req, res) => {
+    let gamePrompt = getTurnLoopCommands()
+    res.render('attack-results', {"gamePrompt": gamePrompt} )
+})
+
+
 
 app.get('/game-loop', (req,res) => {
     res.send('What is your command? add it to the path :)')
