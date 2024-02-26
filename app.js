@@ -3,7 +3,9 @@ var app = express();
 const port = 3000
 //const initializeGame = require('./GameEngine')
 import  bodyParser from 'body-parser'
-import { getDrawPhase, getTurnCommands, initializeGame, getTurnLoopCommands, getAttackStringPrompt, getAttackResultsPrompt, getForceSwapPrompt, skipPlayerTurn, getPlayerHand, sendPlaceCardtoSlot } from './GameEngine.js'
+import { getDrawPhase, getTurnCommands, initializeGame, getTurnLoopCommands,
+    getAttackStringPrompt, getAttackResultsPrompt, getForceSwapPrompt, skipPlayerTurn,
+    getPlayerHand, sendPlaceCardtoSlot } from './GameEngine.js'
 import { runTurnZeroPlayerOne, runTurnZeroPlayerTwo } from './GameEngine.js'
 import { turnZeroActiveSlotPlayerOne, turnZeroActiveSlotPlayerTwo } from './GameEngine.js'
 
@@ -111,24 +113,10 @@ app.get('/turn-loop-complete', (req, res) => {
 })
 
 app.post('/place-card', (req, res) => {
-    console.log(req.body.command)
-    // if(req.body.command == 'pokemon'){
-    //     //let gamePrompt = someFunction(req.body.command)
-    //     //res.render('play-pokemon.ejs', {"gamePrompt": gamePrompt})
-    // }
-    // else if(req.body.command == 'energy'){
-    //     //let gamePrompt = someFunction(req.body.command)
-    //     //res.render('play-energy.ejs', {"gamePrompt": gamePrompt})
-    // }
-    // else if(req.body.command == 'item'){
-    //     //let gamePrompt = someFunction(req.body.command)
-    //     //res.render('play-item.ejs', {"gamePrompt": gamePrompt})
-    // }
-    let gamePrompt = sendPlaceCardtoSlot(req.body.command)
+    console.log(req.body.cardName, req.body.location, req.body.benchSlot)
+    let gamePrompt = sendPlaceCardtoSlot(req.body.cardName, req.body.location, req.body.benchSlot)
     res.render('place-card.ejs', {"gamePrompt": gamePrompt})
 })
-
-
 
 
 app.listen(port, () => {

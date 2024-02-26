@@ -36,15 +36,11 @@ export function attackPhase(currentGame){
                 }
                 if (currentGame.turnsElapsed % 2 == 0){
                     currentGame.player2.playerField.setActive([newActiveCard, 0])
-                    //console.log(`new active card: ${newActiveCard.name}`)
-                    //var realCardArr = currentGame.player2.playerField.getActive()
-                    //console.log(`real new card: ${realCardArr[0].name}`)
                 }
                 else{
                     currentGame.player1.playerField.setActive([newActiveCard, 0])
 
                 }
-
             }
         }
     }

@@ -17,8 +17,8 @@
       </div>
     </p>
     <form id = "command" action="/place-card" method="post">
-        <h1>Which card do you want to play?</h1>
-        <input type="text" class="form-control" name="command">
+        <h1>Which card do you want to play? Fields are name, location (active or bench) and bench slot 1-5 (only needed for energy)</h1>
+        <input type="text" class="form-control" name="cardName">
         <!-- <script>
             function pathCommand(){
             var action_src = "http://localhost/turn-zero/" + document.getElementsById("command").value;
@@ -26,6 +26,8 @@
             user_form.action = action_src
             }
         </script> -->
+        <input type="text" class="form-control" name="location">
+        <input type="text" class="form-control" name="benchSlot">
         <button type="submit" class="btn btn-primary" >Submit</button>
         <button type="button" class="btn btn-primary" onclick="document.location.href='/turn-loop-commands'">Continue</button>
     </form>

@@ -141,11 +141,11 @@ export function skipPlayerTurn(){
     currentGame.incrementTurnsElapsed()
 }
 
-export function sendPlaceCardtoSlot(command){
-    //command is a string of a card name
+export function sendPlaceCardtoSlot(cardName, location, benchSlot){
+    //we are getting three params here, cardName, location (active or bench), and benchSlot (1-5)
     let returnString = ''
     let player = getActivePlayer()
-    returnString = returnString.concat(placeCardtoSlot(player, command))
+    returnString = returnString.concat(placeCardtoSlot(player, cardName, location, benchSlot))
     return returnString
 }
 
