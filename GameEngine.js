@@ -8,7 +8,7 @@ import Turn from './PlayerTurn.js'
 import { turnLoop, drawPhase, turnLoopCommands, printHand } from './TurnLoop.js'
 import { turnZeroPlayerOne, turnZeroPlayerTwo } from './TurnZero.js'
 import { initializeActiveSlot} from './TurnZero.js'
-import { damagePhase, getAttackString, getBenchPokes } from './AttackPhase.js'
+import { damagePhase, getAttackString, getBenchPokes, forceSwap } from './AttackPhase.js'
 import { placeCardtoSlot } from './PlaceCardtoSlot.js'
 
 let currentGame = new Game(null, null, 0 , false)
@@ -134,6 +134,13 @@ export function getPlayerHand(){
 export function getForceSwapPrompt(){
     let returnString = ''
     returnString = returnString.concat(getBenchPokes(currentGame))
+    return returnString
+}
+
+export function performForceSwap(activeChoice){
+    //activeChoice is a string of a card name
+    let returnString = ''
+    returnString = returnString.concat(forceSwap(currentGame, activeChoice))
     return returnString
 }
 

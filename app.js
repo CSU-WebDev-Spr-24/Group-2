@@ -5,7 +5,7 @@ const port = 3000
 import  bodyParser from 'body-parser'
 import { getDrawPhase, getTurnCommands, initializeGame, getTurnLoopCommands,
     getAttackStringPrompt, getAttackResultsPrompt, getForceSwapPrompt, skipPlayerTurn,
-    getPlayerHand, sendPlaceCardtoSlot } from './GameEngine.js'
+    getPlayerHand, sendPlaceCardtoSlot, performForceSwap } from './GameEngine.js'
 import { runTurnZeroPlayerOne, runTurnZeroPlayerTwo } from './GameEngine.js'
 import { turnZeroActiveSlotPlayerOne, turnZeroActiveSlotPlayerTwo } from './GameEngine.js'
 
@@ -106,6 +106,11 @@ app.post('/attacker-options', (req, res) => {
         let gamePrompt = getForceSwapPrompt()
         res.render('force-swap.ejs', {"gamePrompt": gamePrompt})
     }
+})
+
+app.post('/force-swap', (req, res) => {
+    let gamePrompt = performForceSwap(req.body.command)
+    res.render('force-swap-results', {"gamePrompt": gamePrompt})
 })
 
 app.get('/turn-loop-complete', (req, res) => {

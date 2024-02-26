@@ -161,25 +161,24 @@ export function getBenchPokes(currentGame){
     return returnString
 }
 
-function forceSwap(currentGame, activeChoice){
+export function forceSwap(currentGame, activeChoice){
+    let returnString = ''
     if (currentGame.turnsElapsed % 2 == 0){
         var defender = currentGame.player1
     }
     else{
         var defender = currentGame.player2
     }
-    indexSlot = 0;
+    let indexSlot = 0;
     for(let eachSlot of defender.playerField.bench){
         indexSlot = indexSlot + 1
         if(activeChoice == eachSlot[0].name){
-            //this will set the card to undefined when tried to accessed out of this module
-            //defender.playerField.setActive(eachCard)
-            console.log(`${eachSlot[0].name} has been chosen as the active Pokemon`)
+            returnString = returnString.concat(`${eachSlot[0].name} has been chosen as the active Pokemon`)
             defender.playerField.bench.splice(indexSlot, 1)
-            activePokeChosen = true;
-            return eachSlot[0]
+            //return eachSlot[0]
         }
     }
+    return returnString
 }
 
 function oldForceSwap(defender){
