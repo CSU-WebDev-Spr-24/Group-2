@@ -3,7 +3,7 @@ var app = express();
 const port = 3000
 //const initializeGame = require('./GameEngine')
 import  bodyParser from 'body-parser'
-import { getDrawPhase, getTurnCommands, initializeGame, getTurnLoopCommands, getAttackStringPrompt, getAttackResultsPrompt } from './GameEngine.js'
+import { getDrawPhase, getTurnCommands, initializeGame, getTurnLoopCommands, getAttackStringPrompt, getAttackResultsPrompt, getForceSwapPrompt, skipPlayerTurn, getPlayerHand, sendPlaceCardtoSlot } from './GameEngine.js'
 import { runTurnZeroPlayerOne, runTurnZeroPlayerTwo } from './GameEngine.js'
 import { turnZeroActiveSlotPlayerOne, turnZeroActiveSlotPlayerTwo } from './GameEngine.js'
 
@@ -61,6 +61,14 @@ app.post('/pre-turn-commands', (req, res) => {
         let gamePrompt = getDrawPhase(req.body.command)
         res.render('draw-phase.ejs', {"gamePrompt": gamePrompt})
     }
+    else if(req.body.command == 'skip'){
+        skipPlayerTurn()
+        let gamePrompt = getTurnCommands()
+        res.render('pre-turn-commands.ejs', {"gamePrompt": gamePrompt})
+    }
+    else if(req.body.command == 'quit'){
+        //set up quit game functionality
+    }
     //res.render('draw-phase.ejs', {"gamePrompt": gamePrompt})
 })
 
@@ -79,6 +87,10 @@ app.post('/turn-loop-commands', (req, res) => {
         let gamePrompt = getAttackStringPrompt()
         res.render('attacker-options.ejs', {"gamePrompt": gamePrompt} )
     }
+    if((req.body.command == 'play card')){
+        let gamePrompt = getPlayerHand()
+        res.render('place-card.ejs', {"gamePrompt": gamePrompt} )
+    }
 })
 
 app.post('/attacker-options', (req, res) => {
@@ -89,7 +101,8 @@ app.post('/attacker-options', (req, res) => {
         res.render('attack-results.ejs', {"gamePrompt": gamePrompt} )
     }
     else{
-        //forceswap and stuff
+        let gamePrompt = getForceSwapPrompt()
+        res.render('force-swap.ejs', {"gamePrompt": gamePrompt})
     }
 })
 
@@ -97,22 +110,26 @@ app.get('/turn-loop-complete', (req, res) => {
     res.render('turn-loop-complete')
 })
 
-
-// app.get('/attack-results', (req, res) => {
-//     let gamePrompt = getAttackResultsPrompt()
-//     res.render('attack-results', {"gamePrompt": gamePrompt} )
-// })
-
-
-
-app.get('/game-loop', (req,res) => {
-    res.send('What is your command? add it to the path :)')
+app.post('/place-card', (req, res) => {
+    console.log(req.body.command)
+    // if(req.body.command == 'pokemon'){
+    //     //let gamePrompt = someFunction(req.body.command)
+    //     //res.render('play-pokemon.ejs', {"gamePrompt": gamePrompt})
+    // }
+    // else if(req.body.command == 'energy'){
+    //     //let gamePrompt = someFunction(req.body.command)
+    //     //res.render('play-energy.ejs', {"gamePrompt": gamePrompt})
+    // }
+    // else if(req.body.command == 'item'){
+    //     //let gamePrompt = someFunction(req.body.command)
+    //     //res.render('play-item.ejs', {"gamePrompt": gamePrompt})
+    // }
+    let gamePrompt = sendPlaceCardtoSlot(req.body.command)
+    res.render('place-card.ejs', {"gamePrompt": gamePrompt})
 })
 
-app.get('/game-loop/:command', (req, res) => {
-    res.send("Game Start!")
-    initializeGame()
-})
+
+
 
 app.listen(port, () => {
     console.log(`Pokemon TCG app listening on port ${port}`)

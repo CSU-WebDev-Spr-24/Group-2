@@ -2,64 +2,30 @@ import readline from 'readline-sync'
 import { useItemEffect } from './ItemEffects.js'
 import { placeEnergytoSlot } from './PlaceEnergytoSlot.js'
 
-export function placeCardtoSlot(currentGame){
-    if (currentGame.turnsElapsed % 2 == 0){
-        var activePlayer = currentGame.player1
-    }
-    else{
-        var activePlayer = currentGame.player2
-    }
-    printHand(activePlayer)
-    cardChosen = getCardChoice(activePlayer)
-    cardType = checkCardChosen(cardChosen)
+export function placeCardtoSlot(activePlayer, command){
+    let returnString = ''
+    let cardChosen = getCardChoice(activePlayer, command)
+    let cardType = checkCardChosen(cardChosen)
     if (cardType == "Pokémon"){
-        //call either active or bench
-        goodChoice = false;
-        while (goodChoice == false){
-            whereToPlace = readline.question(`Where would you like to place your Pokemon? Active or Bench?\n`)
-            if (whereToPlace == "Bench"){
-                placeCardtoBench(cardChosen, activePlayer)
-                goodChoice = true
-            }
-            else if (whereToPlace == "Active"){
-                placeCardtoActive(cardChosen, activePlayer)
-                goodChoice = true
-            }
-            else{
-                console.log(`${whereToPlace}`)
-                console.log("Invalid choice - please choose Active or Bench!!")
-            }
-        }
+        //placePokemontoSlot(activePlayer, cardChosen)
+        returnString = returnString.concat("You chose a Pokemon")
     }
     else if (cardType == "Energy"){
         //console.log("Energy type check cleared")
-        placeEnergytoSlot(activePlayer, cardChosen)
+        //placeEnergytoSlot(activePlayer, cardChosen)
+        returnString = returnString.concat("You chose a Energy Card")
     }
     else if (cardType == "Trainer"){
-        useItemEffect(currentGame, activePlayer)
+        //useItemEffect(currentGame, activePlayer)
+        returnString = returnString.concat("You chose a Trainer Card")
     }
+    return returnString
     }
 
-    function getCardChoice(activePlayer){
-        var cardChoice = false
-        while(cardChoice == false){
-            handArr = []
-            for(eachCard of activePlayer.playerField.hand){
-                console.log(`${eachCard.name}`)
-                handArr.push(eachCard.name)
-            }
-            cardToPlace = readline.question(`\nWhat card would you like to play?\n`)
-            if(handArr.includes(cardToPlace)){
-                cardChoice = true;
-                console.log(`${cardToPlace} has been chosen`)
-            }
-            else{
-                console.log(`That card is not in your hand!`)
-            }
-            for(eachCard of activePlayer.playerField.hand){
-                if (cardToPlace == eachCard.name){
-                    return eachCard
-                }
+    function getCardChoice(activePlayer, command){
+        for(let eachCard of activePlayer.playerField.hand){
+            if (command == eachCard.name){
+                return eachCard
             }
         }
     }
@@ -68,7 +34,17 @@ export function placeCardtoSlot(currentGame){
         return cardChosen.supertype
     }
 
-    function placeCardtoBench(cardChosen, activePlayer){
+    function placePokemontoSlot(activePlayer, cardChosen){
+        whereToPlace = readline.question(`Where would you like to place your Pokemon? Active or Bench?\n`)
+        if (whereToPlace == "Bench"){
+            placePokeCardtoBench(cardChosen, activePlayer)
+        }
+        else if (whereToPlace == "Active"){
+            placePokeCardtoActive(cardChosen, activePlayer)
+        }
+    }
+
+    function placePokeCardtoBench(cardChosen, activePlayer){
         //check to see if bench is full
         benchArr = activePlayer.playerField.getBench()
         sizeBenchArr = benchArr.length
@@ -81,7 +57,7 @@ export function placeCardtoSlot(currentGame){
         }
     }
 
-    function placeCardtoActive(cardChosen, activePlayer){
+    function placePokeCardtoActive(cardChosen, activePlayer){
         //swap active with cardChosen
         //check to see if bench is full
         benchArr = activePlayer.playerField.getBench()
@@ -98,26 +74,5 @@ export function placeCardtoSlot(currentGame){
             console.log("Sorry your bench is full!")
         }
 
-    }
-
-    function placeEnergyCard(cardChosen){
-        //ask what poke to attatch to
-        //add to slot arr
-    }
-
-
-
-    function printHand(activePlayer){
-        console.log(`This is your hand...`);
-        var handString = '';
-        for (let i = 0; i < activePlayer.playerField.hand.length; i ++){
-        handString = handString.concat(activePlayer.playerField.hand[i].name)
-        if (i < activePlayer.playerField.hand.length -1){
-            handString = handString.concat(', ');
-        }
-        }
-        console.log(`${handString}`)
-        console.log('\n')
-        return handString
     }
 

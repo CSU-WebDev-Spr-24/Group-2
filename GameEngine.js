@@ -1,12 +1,3 @@
-// const player = require('./Player')
-// const game = require('./Game')
-// const deck = require('./DeckCreate')
-// const PlayerField = require('./PlayerField')
-// const turn = require('./PlayerTurn')
-// const readline = require('readline-sync')
-// const turnLoop = require('./TurnLoop')
-// const turnZero = require('./TurnZero')
-
 import readline from 'readline-sync'
 
 import Player from './Player.js'
@@ -14,42 +5,24 @@ import Game from './Game.js'
 import Deck from './DeckCreate.js'
 import PlayerField from './PlayerField.js'
 import Turn from './PlayerTurn.js'
-//import readline from './readline-sync'
-import { turnLoop, drawPhase, turnLoopCommands } from './TurnLoop.js'
+import { turnLoop, drawPhase, turnLoopCommands, printHand } from './TurnLoop.js'
 import { turnZeroPlayerOne, turnZeroPlayerTwo } from './TurnZero.js'
 import { initializeActiveSlot} from './TurnZero.js'
-import { damagePhase, getAttackString } from './AttackPhase.js'
+import { damagePhase, getAttackString, getBenchPokes } from './AttackPhase.js'
+import { placeCardtoSlot } from './PlaceCardtoSlot.js'
 
 let currentGame = new Game(null, null, 0 , false)
 
-// class GameEngine{
-//     constructor(currentGame){
-//     this.currentGame = currentGame
-//     }
-// }
-
-//const runGame = {
 export function initializeGame(){
     //add uuid functionality, right now just uses base values
     var player1 = new Player(1234, new PlayerField(), new Turn(1234, 'draw', false))
     var player2 = new Player(5678, new PlayerField(), new Turn(5678, 'draw', true))
-    //var currentGame = new Game(player1, player2, 0, false)
-    //let gameEngine = new GameEngine(currentGame)
     currentGame.setPlayer1(player1)
     currentGame.setPlayer2(player2)
     initPlayerFields(player1)
     initPlayerFields(player2)
     let returnString = introduction()
-    //console.log(`return string from init game: ${returnString}`)
     return returnString
-    // console.log("Welcome to PokeTCG Prototype")
-    // console.log("This is a text based version of the game")
-    // console.log("\n")
-    // console.log("The initial draw phase will now begin")
-
-    //comment these out while testing
-    //turnZero(currentGame.player1, currentGame.player2);
-    //gameLoop(currentGame)
 }
 
 //handlers for turnZero.js
@@ -82,12 +55,7 @@ export function turnZeroActiveSlotPlayerTwo(command){
 
 export function getTurnCommands(){
     let returnString = ''
-    if (currentGame.turnsElapsed % 2 == 0){
-        var player = currentGame.player1
-    }
-    else{
-        var player = currentGame.player2
-    }
+    var player = getActivePlayer()
     returnString = returnString.concat(`It about to be player ${player.playerID}'s turn...`)
     returnString = returnString.concat("Available Options are: play turn, skip, or quit")
     return returnString
@@ -155,6 +123,43 @@ export function getAttackResultsPrompt(attackName){
     return returnArr
 }
 
+export function getPlayerHand(){
+    let returnString = ''
+    let player = getActivePlayer()
+    returnString = returnString.concat(`Player ${player.playerID}... this is your hand: `)
+    returnString = returnString.concat(printHand(player))
+    return returnString
+}
+
+export function getForceSwapPrompt(){
+    let returnString = ''
+    returnString = returnString.concat(getBenchPokes(currentGame))
+    return returnString
+}
+
+export function skipPlayerTurn(){
+    currentGame.incrementTurnsElapsed()
+}
+
+export function sendPlaceCardtoSlot(command){
+    //command is a string of a card name
+    let returnString = ''
+    let player = getActivePlayer()
+    returnString = returnString.concat(placeCardtoSlot(player, command))
+    return returnString
+}
+
+
+function getActivePlayer(){
+    if (currentGame.turnsElapsed % 2 == 0){
+        var player = currentGame.player1
+    }
+    else{
+        var player = currentGame.player2
+    }
+    return player
+}
+
 function initPlayerFields(player){
     player.playerField.setPlayerID(player.getPlayerID())
     //bench example: [[squirtle, energy, energy], [charmander, energy], [pidgey]]
@@ -165,30 +170,30 @@ function initPlayerFields(player){
     player.playerField.setActive([[]])
 }
 
-function gameLoop(currentGame){
-    //console.log("Welcome to PokeTCG Prototype")
-    //console.log("This is a text based version of the game")
-    //console.log("\n")
-    //console.log("The initial draw phase will now begin")
-    //turnZero(currentGame.player1, currentGame.player2);
-    //console.log(currentGame.player1.turn.isOver)
-    while(currentGame.isGameOver != true){
-        console.log("Available commands are 'play turn', 'skip', and 'quit'")
-        var command = readline.question('What would you like to do?\n')
-        if (command == 'play turn'){
-            turnLoop(currentGame)
-        }
-        if (command == 'skip'){
-            currentGame.incrementTurnsElapsed()
-        }
-        if (command == 'quit'){
-                currentGame.incrementTurnsElapsed()
-                currentGame.setIsGameOver(true)
-        }
-    }
-    console.log("The Game is now over!!!")
-    console.log("This is just a proof of concept, so the game will now close")
-}
+// function gameLoop(currentGame){
+//     //console.log("Welcome to PokeTCG Prototype")
+//     //console.log("This is a text based version of the game")
+//     //console.log("\n")
+//     //console.log("The initial draw phase will now begin")
+//     //turnZero(currentGame.player1, currentGame.player2);
+//     //console.log(currentGame.player1.turn.isOver)
+//     while(currentGame.isGameOver != true){
+//         console.log("Available commands are 'play turn', 'skip', and 'quit'")
+//         var command = readline.question('What would you like to do?\n')
+//         if (command == 'play turn'){
+//             turnLoop(currentGame)
+//         }
+//         if (command == 'skip'){
+//             currentGame.incrementTurnsElapsed()
+//         }
+//         if (command == 'quit'){
+//                 currentGame.incrementTurnsElapsed()
+//                 currentGame.setIsGameOver(true)
+//         }
+//     }
+//     console.log("The Game is now over!!!")
+//     console.log("This is just a proof of concept, so the game will now close")
+// }
 
 
 

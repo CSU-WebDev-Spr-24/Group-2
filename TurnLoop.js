@@ -88,7 +88,7 @@ export function turnLoop(currentGame){
         return returnString
     }
 
-    function printHand(player){
+    export function printHand(player){
         var returnString = '';
         for (let i = 0; i < player.playerField.hand.length; i ++){
         returnString = returnString.concat(player.playerField.hand[i].name)
