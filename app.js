@@ -71,13 +71,7 @@ app.post('/pre-turn-commands', (req, res) => {
     else if(req.body.command == 'quit'){
         //set up quit game functionality
     }
-    //res.render('draw-phase.ejs', {"gamePrompt": gamePrompt})
 })
-
-// app.get('/draw-phase', (req, res) => {
-//     let gamePrompt = getDrawPhase()
-//     res.render('draw-phase.ejs', {"gamePrompt": gamePrompt} )
-// })
 
 app.get('/turn-loop-commands', (req, res) => {
     let gamePrompt = getTurnLoopCommands()

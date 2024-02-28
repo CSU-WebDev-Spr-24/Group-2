@@ -1,5 +1,3 @@
-//Throws err Cannot use import statement outside a module
-//import pokemon from 'pokemontcgsdk'
 var pokemon = require('pokemontcgsdk');
 var fs = require('fs');
 const { json } = require('stream/consumers');
@@ -46,7 +44,7 @@ const baseSetPopulate= {
         jsonFormat.start();
         //base set has 102 cards, count starts from 1
         //set to < 5 for testing and readability
-        for (let i = 1; i < 5; i++) {
+        for (let i = 1; i < 103; i++) {
             var setID = 'base1-';
             var cardID =setID.concat(i.toString());
             apiCall.pokeapi(cardID);

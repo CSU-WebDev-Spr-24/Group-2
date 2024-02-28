@@ -8,5 +8,4 @@ export function useItemEffect(currentGame, activePlayer){
     activePoke.setCardHp(healedHp)
     console.log(`Successfully healed hp`)
     console.log(`${activePoke.name} now has ${healedHp}\n`)
-
 }
