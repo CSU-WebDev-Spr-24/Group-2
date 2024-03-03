@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 
 const style = {
     color: 'white',
@@ -6,13 +7,13 @@ const style = {
     padding: '5px 15px',
     border: '1px white'
 }
-export const Button = (props) => {
+export const myButton = (props) => {
     const handleClick = () => {
         alert("I could call the API from here!")
     }
     return (
-        <button className="btn-primary" onClick={handleClick} style={style}>
+        <Button className="btn-primary" onClick={handleClick} style={style}>
             {props.textValue}
-            </button>
+        </Button>
     );
 }

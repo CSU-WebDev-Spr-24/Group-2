@@ -12,28 +12,14 @@ const style = {
   borderRadius: '10px',
   marginRight: '0.5rem',
   marginBottom: '0.5rem',
-  cursor: 'move',
+  cursor: 'pointer',
   float: 'left',
-  height: '161px',
+  height: '161px'
 }
 
 
 export const Card = function Card(props) {
-  const [{isDragging}, drag] = useDrag(() => ({
-    type: ItemTypes.POKEMON,
-    end: (item, monitor) => {
-      const dropResult = monitor.getDropResult()
-      if (item && dropResult) {
-        console.log("You successfully dragged and dropped!!!")
-      }
-    },
-    collect: (monitor) => ({
-      isDragging: !!monitor.isDragging(),
-      handlerId: monitor.getHandlerId(),
-    }),
-  }))
-  const opacity = isDragging ? 0.4 : 1
-
+  
   const handleClick = () => {
     alert("I can call an API endpoint here to perform an action!")
   }
@@ -42,7 +28,7 @@ export const Card = function Card(props) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
-    <div ref={drag} style={{...style, opacity }} data-testid={`box`}>
+    <div style={{...style}} data-testid={`box`}>
         <img src={props.url} height={161} style={{borderRadius: 'inherit'}} onClick={handleShow}></img>
 
         <Modal show={show} onHide={handleClose} className='cardModal'>
@@ -53,12 +39,10 @@ export const Card = function Card(props) {
               <Row>
                 <Col>
                   <div className='d-grid gap-5'>
-                        <Button variant="primary" size="lg" onClick={handleClick}>
-                        Move 1
+                      <Button variant="primary" size="lg" onClick={}>
+                        move to bench
                       </Button>
-                      <Button variant="primary" size="lg" onClick={handleClick}>
-                        Move 2
-                      </Button></div>
+                    </div>
                 </Col>
                 <Col className='col-9'>
                 <img src={props.url} className='h-75 d-inline modalImg'></img>
