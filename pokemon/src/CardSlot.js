@@ -14,6 +14,7 @@ const style = {
   borderRadius: '15px',
   float: 'left'
 }
+//add attribute - active or bench
 
 export const CardSlot = ({card, player}) => {
   const [{canDrop, isOver}, drop] = useDrop(() => ({

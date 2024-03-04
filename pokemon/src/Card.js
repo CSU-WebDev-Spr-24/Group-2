@@ -1,6 +1,4 @@
-import React, {useState} from 'react'
-import {useDrag} from 'react-dnd'
-import { ItemTypes } from './ItemTypes.js';
+import React, {useState} from 'react';
 import  Modal  from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -19,20 +17,6 @@ const style = {
 
 
 export const Card = function Card(props) {
-  const [{isDragging}, drag] = useDrag(() => ({
-    type: ItemTypes.POKEMON,
-    end: (item, monitor) => {
-      const dropResult = monitor.getDropResult()
-      if (item && dropResult) {
-        console.log("You successfully dragged and dropped!!!")
-      }
-    },
-    collect: (monitor) => ({
-      isDragging: !!monitor.isDragging(),
-      handlerId: monitor.getHandlerId(),
-    }),
-  }))
-  const opacity = isDragging ? 0.4 : 1
 
   const handleClick = () => {
     alert("I can call an API endpoint here to perform an action!")

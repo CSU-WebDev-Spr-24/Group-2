@@ -4,7 +4,7 @@ import  Bench from './Bench';
 import Active from './Active';
 import { Hand } from './Hand';
 import { Button }  from './Button';
-
+//add api calls here
 export const Container = memo(function Container() {
     return (
         <div className='container-fluid'>
@@ -13,6 +13,7 @@ export const Container = memo(function Container() {
                     </div>
                 <div className='col'>
                     <div className=" opponent-hand">
+                        {/* add api call  */}
                         <Card url = "https://images.pokemontcg.io/base6/14_hires.png" flippedOver = 'true'/>
                         <Card url = "https://images.pokemontcg.io/base6/15_hires.png" flippedOver = 'true'/>
                         <Card url = "https://images.pokemontcg.io/base6/16_hires.png" flippedOver = 'true'/>

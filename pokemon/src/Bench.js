@@ -9,6 +9,7 @@ const style = {
     justifyItems: 'space-between',
     color: 'white'
 }
+//add indices 
 const Bench = () => {
     return (
     <div style={{...style}} className="row position-relative">
