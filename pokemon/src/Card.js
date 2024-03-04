@@ -19,6 +19,7 @@ const style = {
 
 
 export const Card = function Card(props) {
+  const [location, setLocation] = useState('');
   
   const handleClick = () => {
     alert("I can call an API endpoint here to perform an action!")
@@ -39,7 +40,7 @@ export const Card = function Card(props) {
               <Row>
                 <Col>
                   <div className='d-grid gap-5'>
-                      <Button variant="primary" size="lg" onClick={}>
+                      <Button variant="primary" size="lg" onClick={handleClick}>
                         move to bench
                       </Button>
                     </div>

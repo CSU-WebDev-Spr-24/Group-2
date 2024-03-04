@@ -18,10 +18,6 @@ var cards = [
 
 const Bench = () => {
     const[bench, setBench] = useState([])
-    setBench([
-        ...bench,
-        {id: nextId++, card: card}
-    ])
 
     return (
     <div style={{...style}} className="row position-relative">

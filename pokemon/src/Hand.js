@@ -12,11 +12,6 @@ var cards = [
 
 export const Hand = () => {
     const[hand, setHand] = useState([])
-    setHand([
-        ...hand,
-        {id: nextId++, card: card}
-    ])
-    
     
     return(
         <React.Fragment>
