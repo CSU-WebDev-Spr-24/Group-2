@@ -1,5 +1,5 @@
-import cardArray from './cardbase.json' with { type: "json" }
-import Card from './Card.js'
+import cardArray from './cardbase.json' assert { type: 'json' }; //'with' was throwing errors here
+import Card from './Card.js';
 var playerDeck = []
 
 class Deck {
