@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import {useDrop} from 'react-dnd'
 import  { Card }  from './Card'
 import { ItemTypes } from './ItemTypes'
 const style = {
@@ -17,25 +16,11 @@ const style = {
 //add attribute - active or bench
 
 export const CardSlot = ({card, player}) => {
-  const [{canDrop, isOver}, drop] = useDrop(() => ({
-    accept: ItemTypes.POKEMON,
-    drop: () => ({name: 'CardSlot'}),
-    collect: (monitor) => ({
-      isOver: monitor.isOver(),
-      canDrop: monitor.canDrop(),
-    }),
-  }))
-  const isActive = canDrop && isOver
-  let backgroundColor = 'rgb(256 230 34 / 90%)'
-  if (isActive) {
-    backgroundColor = 'rgb(6 230 34/ 95%)'
-  } else if (canDrop) {
-    backgroundColor = 'rgb(256 230 34 / 80%)'
-  }
+  const [Card, setCard] = useState(card);
+
+  let backgroundColor = 'rgb(256 230 34 / 90%)';
   return (
-    <div ref={drop} style={{...style, backgroundColor }}  data-testid="cardslot">
-      {isActive ? 'Release to drop!' : "Drag a card here"}
-      {Card.url ? <Card  url = {Card.url}/> : ''}
+    <div style={{...style, backgroundColor }}  data-testid="cardslot">
     </div>
   )
 }

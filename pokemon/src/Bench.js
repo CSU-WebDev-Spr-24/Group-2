@@ -1,5 +1,5 @@
 import { CardSlot } from "./CardSlot";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {Card} from './Card'
 const style = {
     height: '12.4rem',
@@ -11,26 +11,21 @@ const style = {
     color: 'white'
 }
 
-var cards = [
 
-]
+export const Bench = ({cards}) => {
+    const[Bench, setBench] = useState([])
 
-
-//add indices 
-const Bench = () => {
-    const[bench, setBench] = useState([])
-
-    return (
-    <div style={{...style}} className="row position-relative">
-        <div className="col"><CardSlot /></div>
-        <div className="col"><CardSlot /></div>
-        <div className="col"><CardSlot /></div>
-        <div className="col"><CardSlot /></div>
-        <div className="col"><CardSlot /></div>
-
-        <div className="position-absolute top-100 start-100 title translate-middle-y">BENCH</div>
-    </div>
+    useEffect(() => {
+        setBench(cards);
+    }, [cards]);
+    
+    return(
+        <React.Fragment>
+            
+            <div style={style} className="position-absolute top-100 start-100 title translate-middle-y Bench">
+                {Bench.map(pokemon => <Card  key={pokemon.id} name = {pokemon.name} url={pokemon.url} flippedOver = {pokemon.flippedOver} supertype= {pokemon.supertype} location={pokemon.location}/>)}
+            </div>
+        </React.Fragment>
     )
 }
 
-export default Bench;

@@ -1,25 +1,18 @@
-import React, {useState} from "react";
-import { useDrop } from "react-dnd";
+import React, {useEffect, useState} from "react";
 import { Card } from "./Card";
 
-var cards = [
-    { id: 1, name: 'Alakazam', url: 'https://images.pokemontcg.io/base1/1_hires.png', flippedOver: false},
-    { id: 2, name: 'Articuno', url: 'https://images.pokemontcg.io/base1/2_hires.png', flippedOver: false},
-    { id: 3, name: 'Charizard', url: 'https://images.pokemontcg.io/base1/3_hires.png', flippedOver: false},
-    { id: 4, name: 'Dark Blastoise', url: 'https://images.pokemontcg.io/base1/4_hires.png', flippedOver: false},
-    { id: 5, name: 'Dark Dragonite', url: 'https://images.pokemontcg.io/base1/5_hires.png', flippedOver: false}   
-]
-
-export const Hand = () => {
+export const Hand = ({cards}) => {
     const[hand, setHand] = useState([])
+
+    useEffect(() => {
+        setHand(cards);
+    }, [cards]);
     
     return(
         <React.Fragment>
             
-            <div className="hand" onLoad={() => {
-                setHand(cards)
-            }}>
-                {hand.map(pokemon => <Card  key={pokemon.id} name = {pokemon.name} url={pokemon.url} flippedOver = {pokemon.flippedOver}/>)}
+            <div className="hand">
+                {hand.map(pokemon => <Card  key={pokemon.id} name = {pokemon.name} url={pokemon.url} flippedOver = {pokemon.flippedOver} supertype= {pokemon.supertype} location={pokemon.location}/>)}
             </div>
         </React.Fragment>
     )

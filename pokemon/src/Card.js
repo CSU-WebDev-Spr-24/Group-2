@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import  Modal  from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import pokemon from 'pokemontcgsdk';
+import { CardButtons } from './CardButtons';
 pokemon.configure({apiKey: '0d524a9e-011f-4f8e-a972-ad3a71503346'})
 const style = {
   borderRadius: '10px',
@@ -38,9 +38,7 @@ export const Card = function Card(props) {
               <Row>
                 <Col>
                   <div className='d-grid gap-5'>
-                      <Button variant="primary" size="lg" onClick={handleClick}>
-                        move to bench
-                      </Button>
+                      <CardButtons supertype={props.supertype} location={props.location} />
                     </div>
                 </Col>
                 <Col className='col-9'>
