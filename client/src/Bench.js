@@ -4,6 +4,8 @@ import {Card} from './Card'
 const style = {
     height: '12.4rem',
     width: 'auto',
+    minHeight: '12.4rem',
+    minWidth: '640px',
     margin: '1rem',
     backgroundColor: 'rgb(11 100 200 / 100%)',
     borderRadius: '15px',
@@ -22,8 +24,8 @@ export const Bench = ({cards}) => {
     return(
         <React.Fragment>
             
-            <div style={style} className="position-absolute top-100 start-100 title translate-middle-y Bench">
-                {Bench.map(pokemon => <Card  key={pokemon.id} name = {pokemon.name} url={pokemon.url} flippedOver = {pokemon.flippedOver} supertype= {pokemon.supertype} location={pokemon.location}/>)}
+            <div style={style} className="Bench">
+                {Bench.map(pokemon => <Card  key={pokemon.id} name = {pokemon.name} url={pokemon.images.large} flippedOver = {pokemon.flippedOver} supertype= {pokemon.supertype} location={"bench"}/>)}
             </div>
         </React.Fragment>
     )

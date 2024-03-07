@@ -1,5 +1,4 @@
 import readline from 'readline-sync'
-
 import Player from './Player.js'
 import Game from './Game.js'
 import Deck from './DeckCreate.js'
