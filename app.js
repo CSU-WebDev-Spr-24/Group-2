@@ -15,18 +15,28 @@ app.use(bodyParser.json({}))
 app.use('/static', express.static('public'))
 app.set('view engine', 'ejs')
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3001"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
 app.get('/', (req, res) => {
     res.render('home.ejs')
 })
 
 app.get('/introduction', (req, res) => {
     let gamePrompt = initializeGame()
-    res.render('introduction.ejs', {"gamePrompt": gamePrompt})
+    //res.render('introduction.ejs', {"gamePrompt": gamePrompt})
+    res.send(gamePrompt)
 })
 
 app.get('/turn-zero/player1', (req, res) => {
-    let gamePrompt = runTurnZeroPlayerOne()
-    res.render('turn-zero-player1.ejs', {"gamePrompt": gamePrompt})
+    // let gamePrompt = runTurnZeroPlayerOne()
+    // res.render('turn-zero-player1.ejs', {"gamePrompt": gamePrompt})
+    let playerHandArr = runTurnZeroPlayerOne()
+    res.send(playerHandArr)
+
 })
 
 app.post('/turn-zero/player1', (req, res) => {

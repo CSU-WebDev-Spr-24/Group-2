@@ -29,8 +29,11 @@ export function initializeGame(){
 export function runTurnZeroPlayerOne(){
     let returnString = ""
     let player1 = currentGame.player1
-    returnString = returnString.concat(turnZeroPlayerOne(player1))
-    return returnString
+    console.log(`Player 1: ${player1}`)
+    // returnString = returnString.concat(turnZeroPlayerOne(player1))
+    // return returnString
+    let playerHandArr = turnZeroPlayerOne(player1)
+    return playerHandArr
 }
 export function runTurnZeroPlayerTwo(){
     let returnString = ""
