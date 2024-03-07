@@ -7,12 +7,12 @@ const style = {
     padding: '5px 15px',
     border: '1px white'
 }
-export const myButton = (props) => {
+export const MyButton = (props) => {
     const handleClick = () => {
         alert("I could call the API from here!")
     }
     return (
-        <Button className="btn-primary" onClick={handleClick} style={style}>
+        <Button className="btn-primary btn" size="lg" variant="primary" onClick={handleClick} style={style}>
             {props.textValue}
         </Button>
     );

@@ -3,10 +3,14 @@ import Button from "react-bootstrap/esm/Button";
 import Col from "react-bootstrap/esm/Col";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
+<<<<<<< HEAD:pokemon/src/pages/Start.jsx
 import axios from 'axios'
 import { paths } from '../const.js'
 
 
+=======
+import { initializeGame } from "../backend/GameEngine";
+>>>>>>> 2c8b05583daddadb7a1f65591f24427e00f5ef20:client/src/pages/Start.jsx
 function Start () {
     axios.get(paths.root + '/introduction')
         .then(function (response) {

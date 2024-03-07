@@ -52,6 +52,12 @@ code {
   font-size: xx-large;
   align-self: center;
 }
+.myButton {
+  height: fit-content;
+  width: fit-content;
+  font-size: xx-large;
+  align-self: center;
+}
 
 .start-button {
   background-color: rgb(0 0 0 / 0%);

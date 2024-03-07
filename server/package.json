@@ -1,12 +1,20 @@
 {
   "type": "module",
   "dependencies": {
+    "crypto": "^1.0.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+<<<<<<< HEAD:package.json
     "mongodb": "^6.4.0",
     "pokemontcgsdk": "^2.0.0",
     "readline-sync": "^1.4.10",
     "start": "^5.1.0",
+=======
+    "fs": "^0.0.1-security",
+    "os": "^0.1.2",
+    "path": "^0.12.7",
+    "pokemontcgsdk": "^2.0.0",
+>>>>>>> 2c8b05583daddadb7a1f65591f24427e00f5ef20:server/package.json
     "yarn": "^1.22.21"
   },
   "name": "group-2",
