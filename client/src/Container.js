@@ -1,9 +1,23 @@
 import {memo} from 'react';
-import { Card } from './Card'
-import  Bench from './Bench';
+import { Card } from './Card';
+import  {Bench} from './Bench';
 import Active from './Active';
 import { Hand } from './Hand';
-import { Button }  from './Button';
+import { Button }  from './MyButton';
+const cards = [
+    { id: 1, name: 'Alakazam', url: 'https://images.pokemontcg.io/base1/1_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'},
+    { id: 2, name: 'Blastoise', url: 'https://images.pokemontcg.io/base1/2_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'},
+    { id: 3, name: 'Chansey', url: 'https://images.pokemontcg.io/base1/3_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'},
+    { id: 4, name: 'Charizard', url: 'https://images.pokemontcg.io/base1/4_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Bench'},
+    { id: 5, name: 'Clefairy', url: 'https://images.pokemontcg.io/base1/5_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'}   
+];
+const opponentcards = [
+    { id: 1, name: 'Magneton', url: 'https://images.pokemontcg.io/base1/6_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'},
+    { id: 2, name: 'Machamp', url: 'https://images.pokemontcg.io/base1/7_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'},
+    { id: 3, name: 'Hitmonchan', url: 'https://images.pokemontcg.io/base1/8_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'},
+    { id: 4, name: 'Gyarados', url: 'https://images.pokemontcg.io/base1/9_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'},
+    { id: 5, name: 'Mewtwo', url: 'https://images.pokemontcg.io/base1/10_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'}   
+];
 //add api calls here
 export const Container = memo(function Container() {
     return (
@@ -12,11 +26,8 @@ export const Container = memo(function Container() {
                 <div className='col'>
                     </div>
                 <div className='col'>
-                    <div className=" opponent-hand">
-                        {/* add api call  */}
-                        <Card url = "https://images.pokemontcg.io/base6/14_hires.png" flippedOver = 'true'/>
-                        <Card url = "https://images.pokemontcg.io/base6/15_hires.png" flippedOver = 'true'/>
-                        <Card url = "https://images.pokemontcg.io/base6/16_hires.png" flippedOver = 'true'/>
+                    <div className="opponent-hand">
+                        <Hand cards={opponentcards}/>
                     </div>
                 </div>
                 <div className='col'></div>
@@ -65,7 +76,7 @@ export const Container = memo(function Container() {
             </div>
 
             <div style={{overflow: 'hidden', clear:'both'}} className="position-absolute top-100 start-50 translate-middle">
-                <Hand />
+                <Hand cards={cards}/>
             </div>
         </div>
     )
