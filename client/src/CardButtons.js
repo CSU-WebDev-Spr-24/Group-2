@@ -3,28 +3,29 @@ import React from "react";
 import { MyButton } from "./MyButton";
 
 export const CardButtons = ({supertype, location}) => {
-    if(supertype === "Pokemon" && location === "Hand") {
+    console.log("got to CardButtons")
+    if(supertype === "Pokémon" && location === "hand") {
         return (
             <div>
                 <MyButton className="Button" textValue="Place on Bench" />
             </div>
         )
     }
-    else if(supertype === "Pokemon" && location === "Bench") {
+    else if(supertype === "Pokémon" && location === "Bench") {
         return (
             <div>
                 <MyButton textValue="Make Active" />
             </div>
         )
     }
-    else if(supertype === "Trainer" && location === "Hand") {
+    else if(supertype === "Trainer" && location === "hand") {
         return (
             <div>
                 <MyButton textValue="Play" />
             </div>
         )
     }
-    else if(supertype === "Energy" && location === "Hand") {
+    else if(supertype === "Energy" && location === "hand") {
         return (
             <div>
                 <MyButton textValue="Attach" />

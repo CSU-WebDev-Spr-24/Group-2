@@ -5,6 +5,8 @@ import { Card } from './Card'
 const style = {
     height: '12.4rem',
     width: 'auto',
+    minHeight: '12.4rem',
+    minWidth: '640px',
     margin: '1rem',
     backgroundColor: 'rgb(11 100 200 / 100%)',
     borderRadius: '15px',

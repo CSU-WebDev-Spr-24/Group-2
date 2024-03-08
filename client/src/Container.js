@@ -3,8 +3,8 @@ import { Card } from './Card';
 import  { Bench } from './Bench';
 import Active from './Active';
 import { Hand } from './Hand';
-import { Button }  from './MyButton';
-import axios from 'axios'
+import { MyButton }  from './MyButton';
+import axios from 'axios';
 import { paths } from './const.js'
 // const cards = [
 //     { id: 1, name: 'Alakazam', url: 'https://images.pokemontcg.io/base1/1_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'},

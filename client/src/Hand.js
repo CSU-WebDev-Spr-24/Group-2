@@ -1,44 +1,34 @@
 import React, {Component, useEffect, useState} from "react";
 import { Card } from "./Card";
-import axios from 'axios'
-import { paths } from './const.js'
+const style = {
+    minHeight: '12.4rem',
+    maxHeight: '12.4rem',
+    minWidth: '640px',
+    margin: '1rem',
+    justifyItems: 'space-between',
+    color: 'white',
+    overflow: 'scroll'
+}
+
 
 let cards = []
 
-export class Hand extends Component {
-    // const[hand, setHand] = useState([])
+    useEffect(() => {
+        console.log(cards)
+        setHand(cards);
+    }, [cards]);
 
-    // useEffect(() => {
-    //     setHand(cards);
-    // }, [cards]);
-
-    async componentDidMount(){
-        let cards = axios.get(paths.root + '/turn-zero/player1')
-        .then(function (response) {
-        // handle success
-            console.log(response);
-            cards = response.data
-            return cards
-        })
-        .catch(function (error) {
-        // handle error
-            console.log(error);
-        })
-        .finally(function () {
-        // always executed
-        });
-    }
-
-    render(){
-    //cards.map used to be hand.map
     return(
         <React.Fragment>
 
-            <div className="hand">
-                {cards.map(pokemon => <Card  key={pokemon.id} name = {pokemon.name} url={pokemon.images.large} flippedOver = {pokemon.flippedOver} supertype= {pokemon.supertype} location={pokemon.location}/>)}
+            <div className="hand" style={style}>
+                {console.log(cards)}
+                {console.log(hand)}
+                {cards.length > 0 ?
+                    cards.map(pokemon=> <Card  key={pokemon.id} name = {pokemon.name} url={pokemon.images.large} flippedOver = {pokemon.flippedOver} supertype= {pokemon.supertype} location={"hand"} />)
+                    : null}
             </div>
         </React.Fragment>
     )
-}
-}
+
 
