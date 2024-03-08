@@ -14,6 +14,7 @@ import { placeCardtoSlot } from './PlaceCardtoSlot.js'
 let currentGame = new Game(null, null, 0 , false)
 
 export function initializeGame(){
+    console.log(`Game has been started`)
     //add uuid functionality, right now just uses base values
     var player1 = new Player(1234, new PlayerField(), new Turn(1234, 'draw', false))
     var player2 = new Player(5678, new PlayerField(), new Turn(5678, 'draw', true))
@@ -29,7 +30,7 @@ export function initializeGame(){
 export function runTurnZeroPlayerOne(){
     let returnString = ""
     let player1 = currentGame.player1
-    console.log(`Player 1: ${player1}`)
+    console.log(`Player 1: ${player1.playerID}`)
     // returnString = returnString.concat(turnZeroPlayerOne(player1))
     // return returnString
     let playerHandArr = turnZeroPlayerOne(player1)
@@ -38,8 +39,11 @@ export function runTurnZeroPlayerOne(){
 export function runTurnZeroPlayerTwo(){
     let returnString = ""
     let player2 = currentGame.player2
-    returnString = returnString.concat(turnZeroPlayerTwo(player2))
-    return returnString
+    console.log(`Player 2: ${player2.id}`)
+    // returnString = returnString.concat(turnZeroPlayerOne(player1))
+    // return returnString
+    let playerHandArr = turnZeroPlayerTwo(player2)
+    return playerHandArr
 }
 
 export function turnZeroActiveSlotPlayerOne(command){

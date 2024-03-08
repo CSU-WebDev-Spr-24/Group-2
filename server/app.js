@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 app.get('/introduction', (req, res) => {
     let gamePrompt = initializeGame()
     //res.render('introduction.ejs', {"gamePrompt": gamePrompt})
-    res.send(gamePrompt)
+    res.send({})
 })
 
 app.get('/turn-zero/player1', (req, res) => {
@@ -47,8 +47,8 @@ app.post('/turn-zero/player1', (req, res) => {
 })
 
 app.get('/turn-zero/player2', (req, res) => {
-    let gamePrompt = runTurnZeroPlayerTwo()
-    res.render('turn-zero-player2.ejs', {"gamePrompt": gamePrompt})
+    let playerHandArr = runTurnZeroPlayerTwo()
+    res.send(playerHandArr)
 })
 
 app.post('/turn-zero/player2', (req, res) => {

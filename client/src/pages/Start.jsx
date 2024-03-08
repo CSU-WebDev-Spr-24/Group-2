@@ -1,18 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "react-bootstrap/esm/Button";
 import Col from "react-bootstrap/esm/Col";
 import Container from "react-bootstrap/esm/Container";
 import Row from "react-bootstrap/esm/Row";
-<<<<<<< HEAD:pokemon/src/pages/Start.jsx
 import axios from 'axios'
 import { paths } from '../const.js'
 
 
-=======
-import { initializeGame } from "../backend/GameEngine";
->>>>>>> 2c8b05583daddadb7a1f65591f24427e00f5ef20:client/src/pages/Start.jsx
-function Start () {
-    axios.get(paths.root + '/introduction')
+function Start (props) {
+    useEffect(()=> {
+        console.log(props)
+        axios.get(paths.root + '/introduction')
         .then(function (response) {
             // handle success
             console.log(response);
@@ -24,6 +22,7 @@ function Start () {
         .finally(function () {
             // always executed
     });
+    },[])
     return (
         <Container><Row>
         <Col className="col-3"></Col>

@@ -8,9 +8,11 @@ export function turnZeroPlayerOne(player1) {
 }
 
 export function turnZeroPlayerTwo(player2){
-    let returnString = ""
-    returnString = returnString.concat(initialDrawPhase(player2))
-    return returnString
+    // let returnString = ""
+    // returnString = returnString.concat(initialDrawPhase(player2))
+    // return returnString
+    let playerHandArr = initDrawPhaseRandomizer(player2)
+    return playerHandArr
 }
 
 function initialDrawPhase(player){

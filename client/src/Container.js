@@ -1,9 +1,11 @@
 import {memo} from 'react';
 import { Card } from './Card';
-import  {Bench} from './Bench';
+import  { Bench } from './Bench';
 import Active from './Active';
 import { Hand } from './Hand';
 import { Button }  from './MyButton';
+import axios from 'axios'
+import { paths } from './const.js'
 // const cards = [
 //     { id: 1, name: 'Alakazam', url: 'https://images.pokemontcg.io/base1/1_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'},
 //     { id: 2, name: 'Blastoise', url: 'https://images.pokemontcg.io/base1/2_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'},
@@ -19,22 +21,38 @@ const opponentcards = [
     { id: 5, name: 'Mewtwo', url: 'https://images.pokemontcg.io/base1/10_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'}
 ];
 
-let cards = axios.get(paths.root + '/turn-zero/player1')
-        .then(function (response) {
-        // handle success
-            console.log(response);
-            cards = response.data
-            return cards
-        })
-        .catch(function (error) {
-        // handle error
-            console.log(error);
-        })
-        .finally(function () {
-        // always executed
-        });
+// let cards = axios.get(paths.root + '/turn-zero/player1')
+//         .then(function (response) {
+//         // handle success
+//             console.log(response);
+//             cards = response.data
+//             return cards
+//         })
+//         .catch(function (error) {
+//         // handle error
+//             console.log(error);
+//         })
+//         .finally(function () {
+//         // always executed
+//         });
+
+    // let oppCards = axios.get(paths.root + '/turn-zero/player2')
+    //     .then(function (response) {
+    //     // handle success
+    //         console.log(response);
+    //         cards = response.data
+    //         return cards
+    //     })
+    //     .catch(function (error) {
+    //     // handle error
+    //         console.log(error);
+    //     })
+    //     .finally(function () {
+    //     // always executed
+    //     });
 //add api calls here
 export const Container = memo(function Container() {
+    console.log("Some text")
     return (
         <div className='container-fluid'>
             <div className='row'>
@@ -42,7 +60,7 @@ export const Container = memo(function Container() {
                     </div>
                 <div className='col'>
                     <div className="opponent-hand">
-                        <Hand cards={opponentcards}/>
+                        <Hand cards={[]}/>
                     </div>
                 </div>
                 <div className='col'></div>
@@ -53,7 +71,7 @@ export const Container = memo(function Container() {
                 </div>
                 <div className='col-6'>
                     <div className='opponent-bench'>
-                        <Bench />
+                        <Bench cards={[]} />
                     </div>
                 </div>
                 <div className='col'>
@@ -82,7 +100,7 @@ export const Container = memo(function Container() {
 
                 </div>
                 <div className='col-6'>
-                    <Bench />
+                    <Bench cards={[]}/>
                 </div>
                 <div className='col'>
 
@@ -91,7 +109,7 @@ export const Container = memo(function Container() {
             </div>
 
             <div style={{overflow: 'hidden', clear:'both'}} className="position-absolute top-100 start-50 translate-middle">
-                <Hand cards={cards}/>
+                <Hand cards={[]}/>
             </div>
         </div>
     )
