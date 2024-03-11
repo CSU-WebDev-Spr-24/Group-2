@@ -28,12 +28,8 @@ app.get('/', (req, res) => {
 app.get('/introduction', (req, res) => {
     let gamePrompt = initializeGame()
     //res.render('introduction.ejs', {"gamePrompt": gamePrompt})
-<<<<<<< HEAD
-    res.send({})
-=======
     res.send(gamePrompt)
     console.log(gamePrompt)
->>>>>>> e54e134df3c582160cefe8d32e5efc20791be074
 })
 
 app.get('/turn-zero/player1', (req, res) => {

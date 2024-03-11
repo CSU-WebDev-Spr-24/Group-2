@@ -29,19 +29,27 @@ export function initializeGame(){
 export function runTurnZeroPlayerOne(){
     let returnString = ""
     let player1 = currentGame.player1
-    console.log(`Player 1: ${player1.playerID}`)
+    console.log(`Player 1: ${player1.playerID}\n`)
     // returnString = returnString.concat(turnZeroPlayerOne(player1))
     // return returnString
     let playerHandArr = turnZeroPlayerOne(player1)
+    console.log(`Player ${player1.playerID}'s hand:`)
+    console.log(playerHandArr)
+    // for (let eachCard in playerHandArr)
+    //     console.log(eachCard.name)
     return playerHandArr
 }
 export function runTurnZeroPlayerTwo(){
     let returnString = ""
     let player2 = currentGame.player2
-    console.log(`Player 2: ${player2.id}`)
+    console.log(`Player 2: ${player2.playerID}\n`)
     // returnString = returnString.concat(turnZeroPlayerOne(player1))
     // return returnString
     let playerHandArr = turnZeroPlayerTwo(player2)
+    console.log(`Player ${player2.playerID}'s hand:`)
+    console.log(playerHandArr)
+    // for (let eachCard in playerHandArr)
+    //     console.log(`${eachCard.name}`)
     return playerHandArr
 }
 

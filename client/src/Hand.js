@@ -13,6 +13,9 @@ const style = {
 
 let cards = []
 
+export const Hand = ({cards}) => {
+    const[hand, setHand] = useState([])
+
     useEffect(() => {
         console.log(cards)
         setHand(cards);
@@ -21,9 +24,9 @@ let cards = []
     return(
         <React.Fragment>
 
-            <div className="hand" style={style}>
+            <div className="Hand" style={style}>
                 {console.log(cards)}
-                {console.log(hand)}
+                {console.log(Hand)}
                 {cards.length > 0 ?
                     cards.map(pokemon=> <Card  key={pokemon.id} name = {pokemon.name} url={pokemon.images.large} flippedOver = {pokemon.flippedOver} supertype= {pokemon.supertype} location={"hand"} />)
                     : null}
@@ -31,4 +34,4 @@ let cards = []
         </React.Fragment>
     )
 
-
+}
