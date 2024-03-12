@@ -1,4 +1,4 @@
-import {memo} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import { Card } from './Card';
 import  { Bench } from './Bench';
 import Active from './Active';
@@ -21,38 +21,34 @@ const opponentcards = [
     { id: 5, name: 'Mewtwo', url: 'https://images.pokemontcg.io/base1/10_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'}
 ];
 
-let cards = axios.get(paths.root + '/turn-zero/player1')
-        .then(function (response) {
-        // handle success
-            console.log(response);
-            cards = response.data
-            return cards
-        })
-        .catch(function (error) {
-        // handle error
-            console.log(error);
-        })
-        .finally(function () {
-        // always executed
-        });
-
-    let oppCards = axios.get(paths.root + '/turn-zero/player2')
-        .then(function (response) {
-        // handle success
-            console.log(response);
-            cards = response.data
-            return cards
-        })
-        .catch(function (error) {
-        // handle error
-            console.log(error);
-        })
-        .finally(function () {
-        // always executed
-        });
 //add api calls here
 export const Container = memo(function Container() {
-    console.log("Some text")
+    const [oppHand, setOppHand] = useState([])
+    const [hand, setHand] = useState([])
+
+    useEffect(() => {
+        axios.get(paths.root + '/turn-zero/player1')
+        .then(function (response) {
+        // handle success
+            console.log(response.data)
+            setHand(response.data)
+        })
+        .catch(function (error) {
+        // handle error
+            console.log(error);
+        })
+        axios.get(paths.root + '/turn-zero/player2')
+        .then(function (response) {
+        // handle success
+            setOppHand(response.data)
+        })
+        .catch(function (error) {
+        // handle error
+            console.log(error);
+        })
+    },[])
+
+
     return (
         <div className='container-fluid'>
             <div className='row'>
@@ -60,7 +56,7 @@ export const Container = memo(function Container() {
                     </div>
                 <div className='col'>
                     <div className="opponent-hand">
-                        <Hand cards={oppCards}/>
+                        <Hand cards={oppHand}/>
                     </div>
                 </div>
                 <div className='col'></div>
@@ -109,7 +105,7 @@ export const Container = memo(function Container() {
             </div>
 
             <div style={{overflow: 'hidden', clear:'both'}} className="position-absolute top-100 start-50 translate-middle">
-                <Hand cards={cards}/>
+                <Hand cards={hand}/>
             </div>
         </div>
     )

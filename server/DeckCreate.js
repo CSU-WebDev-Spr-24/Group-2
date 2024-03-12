@@ -1,6 +1,14 @@
 import cardArray from './cardbase.json' assert { type: 'json' }; //'with' was throwing errors here
 import Card from './Card.js';
+import mongoose from 'mongoose'
 var playerDeck = []
+
+
+//connect to mongoDB
+const dbURI = 'mongodb+srv://cox_james:xocsemaj@pokemon0.wlcuscp.mongodb.net/DeckList?retryWrites=true&w=majority&appName=Pokemon0'
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true})
+    .then((result) => console.log('connected to DB'))
+    .catch((err) => console.log(err))
 
 class Deck {
     constructor(){
@@ -20,7 +28,6 @@ const createDeck = {
             playerDeck.push(gameCard)
             playerDeck.push(gameCard)
             playerDeck.push(gameCard)
-
         }
         // PRINT STATEMENT FOR DEBUG
         //console.log(playerDeck[1]);

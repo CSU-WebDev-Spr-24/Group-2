@@ -9,6 +9,9 @@ import { getDrawPhase, getTurnCommands, initializeGame, getTurnLoopCommands,
 import { runTurnZeroPlayerOne, runTurnZeroPlayerTwo } from './GameEngine.js'
 import { turnZeroActiveSlotPlayerOne, turnZeroActiveSlotPlayerTwo } from './GameEngine.js'
 
+//connect to mongoDB
+const dbURI = 'mongodb+srv://cox_james:xocsemaj@pokemon0.wlcuscp.mongodb.net/?retryWrites=true&w=majority&appName=Pokemon0'
+
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json({}))
 
