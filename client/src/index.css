@@ -32,8 +32,9 @@ code {
 }
 
 .opponent-hand {
-  overflow: hidden;
-  transform: scaleY(-1) translate(0px, 9vh);
+  display: flex;
+  flex: no-wrap;
+  line-content: center;
 }
 .opponent-bench{
   transform: translate(0px, -8vh);
