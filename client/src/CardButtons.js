@@ -8,6 +8,7 @@ export const CardButtons = ({supertype, location}) => {
         return (
             <div>
                 <MyButton className="Button" textValue="Place on Bench" />
+                <MyButton className="Button" textValue="Place on Active" />
             </div>
         )
     }

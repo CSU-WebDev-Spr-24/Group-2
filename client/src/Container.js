@@ -54,11 +54,10 @@ export const Container = memo(function Container() {
             <div className='row'>
                 <div className='col'>
                     </div>
-                <div className='col'>
+                    
                     <div className="opponent-hand">
-                        <Hand cards={oppHand}/>
+                        <Hand cards={oppHand} flippedOver={true}/>
                     </div>
-                </div>
                 <div className='col'></div>
             </div>
             <div className='row moveUp'>
@@ -103,9 +102,11 @@ export const Container = memo(function Container() {
                 </div>
 
             </div>
-
-            <div style={{overflow: 'hidden', clear:'both'}} className="position-absolute top-100 start-50 translate-middle">
+            < className='row'>
+                
+            <div className="playerHand">
                 <Hand cards={hand}/>
+            </div>
             </div>
         </div>
     )

@@ -33,8 +33,6 @@ code {
 
 .opponent-hand {
   display: flex;
-  flex: no-wrap;
-  line-content: center;
 }
 .opponent-bench{
   transform: translate(0px, -8vh);
