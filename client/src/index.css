@@ -33,7 +33,7 @@ code {
 
 .opponent-hand {
   display: flex;
-  flex: no-wrap;
+  flex-wrap: nowrap;
   line-content: center;
 }
 .opponent-bench{

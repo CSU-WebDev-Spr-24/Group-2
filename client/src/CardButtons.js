@@ -2,19 +2,29 @@
 import React from "react";
 import { MyButton } from "./MyButton";
 
-export const CardButtons = ({supertype, location}) => {
+export const CardButtons = ({supertype, location, name}) => {
     console.log("got to CardButtons")
     if(supertype === "Pokémon" && location === "hand") {
         return (
             <div>
-                <MyButton className="Button" textValue="Place on Bench" />
+                <MyButton className="Button" textValue="Place on Bench" name={name}/>
+                <MyButton className="Button" textValue="Make Active" name={name}/>
             </div>
+
         )
     }
     else if(supertype === "Pokémon" && location === "Bench") {
         return (
             <div>
                 <MyButton textValue="Make Active" />
+            </div>
+        )
+    }
+    else if(supertype === "Pokémon" && location === "Active") {
+        return (
+            <div>
+                <MyButton textValue="Attack" />
+                <MyButton className="Button" textValue="Retreat" />
             </div>
         )
     }

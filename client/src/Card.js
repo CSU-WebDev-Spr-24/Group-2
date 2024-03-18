@@ -18,7 +18,7 @@ const style = {
 
 export const Card = function Card(props) {
   const [location, setLocation] = useState('');
-  
+
   const handleClick = () => {
     alert("I can call an API endpoint here to perform an action!")
   }
@@ -38,7 +38,7 @@ export const Card = function Card(props) {
               <Row>
                 <Col>
                   <div className='d-grid gap-5'>
-                      <CardButtons supertype={props.supertype} location={props.location} />
+                      <CardButtons supertype={props.supertype} location={props.location} name={props.name}/>
                     </div>
                 </Col>
                 <Col className='col-9'>
@@ -49,6 +49,6 @@ export const Card = function Card(props) {
           </Modal.Body>
       </Modal>
     </div>
-    
+
   )
 }
