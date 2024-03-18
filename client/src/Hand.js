@@ -7,10 +7,13 @@ const style = {
     margin: '1rem',
     justifyItems: 'space-between',
     color: 'white',
-    overflow: 'scroll'
+    overflow: 'scroll',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
 }
 
-export const Hand = ({cards}) => {
+export const Hand = ({cards}, flippedOver) => {
     console.log(cards)
     return(
         <React.Fragment>
@@ -19,7 +22,7 @@ export const Hand = ({cards}) => {
                         <Card  key={pokemon.id}
                         name = {pokemon.name}
                         url={pokemon.images?.large}
-                        flippedOver = {pokemon.flippedOver}
+                        flippedOver = {flippedOver}
                         supertype= {pokemon.supertype}
                         location={"hand"} />
                     )}

@@ -28,7 +28,11 @@ export const Card = function Card(props) {
   const handleShow = () => setShow(true);
   return (
     <div style={{...style}} data-testid={`box`}>
-        <img src={props.url} height={161} style={{borderRadius: 'inherit'}} onClick={handleShow}></img>
+        <img 
+          src={ props.flippedOver == true ? "https://vignette.wikia.nocookie.net/cardgame/images/a/ac/Pokemon-card-back.jpg/revision/latest/scale-to-width-down/342?cb=20131228023927" :props.url} 
+          height={161} 
+          style={{borderRadius: 'inherit'}} 
+          onClick={handleShow}></img>
 
         <Modal show={show} onHide={handleClose} className='cardModal'>
           <Modal.Header closeButton>
