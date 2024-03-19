@@ -48,13 +48,11 @@ export const Container = memo(function Container() {
         })
     },[])
 
-
     return (
         <div className='container-fluid'>
             <div className='row'>
                 <div className='col'>
                     </div>
-
                     <div className="opponent-hand">
                         <Hand cards={oppHand} flippedOver={true}/>
                     </div>
@@ -70,14 +68,11 @@ export const Container = memo(function Container() {
                     </div>
                 </div>
                 <div className='col'>
-
                     <div id='opponent-prize'></div>
                 </div>
-
             </div>
             <div className='row actives'>
                 <div className='col-4'>
-
                 </div>
                 <div className='col-3'>
                     <Active />
@@ -86,19 +81,15 @@ export const Container = memo(function Container() {
                     <Active />
                 </div>
                 <div className='col'>
-
                 </div>
-
             </div>
             <div className='row'>
                 <div className='col'>
-
                 </div>
-                <div className='col-6'>
+                <div className='playerBench'>
                     <Bench cards={[]}/>
                 </div>
                 <div className='col'>
-
                 </div>
             </div>
             <div className="playerHand">

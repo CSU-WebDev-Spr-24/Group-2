@@ -26,7 +26,6 @@ export const Bench = ({cards}) => {
 
     return(
         <React.Fragment>
-
             <div style={style} className="Bench">
                 {bench.map(pokemon => <Card  key={pokemon.id} name = {pokemon.name} url={pokemon.url} flippedOver = {pokemon.flippedOver} supertype= {pokemon.supertype} location={pokemon.location}/>)}
             </div>
