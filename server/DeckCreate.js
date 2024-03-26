@@ -5,16 +5,25 @@ var playerDeck = []
 
 
 //connect to mongoDB
-const dbURI = 'mongodb+srv://cox_james:xocsemaj@pokemon0.wlcuscp.mongodb.net/DeckList?retryWrites=true&w=majority&appName=Pokemon0'
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true})
-    .then((result) => console.log('connected to DB'))
-    .catch((err) => console.log(err))
+// const dbURI = 'mongodb+srv://cox_james:xocsemaj@pokemon0.wlcuscp.mongodb.net/DeckList?retryWrites=true&w=majority&appName=Pokemon0'
+// mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true})
+//     .then((result) => console.log('connected to DB'))
+//     .catch((err) => console.log(err))
 
 class Deck {
     constructor(){
         this.cardList = createDeck.createCard()
     }
 }
+
+// const readFromDb = async () => {
+//     try {
+
+//     }
+//     catch {
+//         console.error(err)
+//     }
+// }
 
 
 const createDeck = {

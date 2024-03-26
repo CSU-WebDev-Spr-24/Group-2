@@ -9,8 +9,11 @@ import { turnZeroPlayerOne, turnZeroPlayerTwo } from './TurnZero.js'
 import { initializeActiveSlot} from './TurnZero.js'
 import { damagePhase, getAttackString, getBenchPokes, forceSwap } from './AttackPhase.js'
 import { placeCardtoSlot } from './PlaceCardtoSlot.js'
+import { v4 as uuidv4 } from 'uuid';
 
-let currentGame = new Game(null, null, 0 , false)
+let gameId = uuidv4()
+
+let currentGame = new Game(gameId, null, null, 0 , false, null)
 
 export function initializeGame(){
     console.log(`Game has been started`)

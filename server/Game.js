@@ -1,9 +1,11 @@
 class Game {
-    constructor(player1, player2, turnsElapsed, isGameOver){
+    constructor(gameId, player1, player2, turnsElapsed, isGameOver, winner){
+        this.gameId = gameId
         this.player1 = player1
         this.player2 = player2
         this.turnsElapsed = turnsElapsed
         this.isGameOver = isGameOver
+        this.winner = winner
     }
 
     getPlayer1(){

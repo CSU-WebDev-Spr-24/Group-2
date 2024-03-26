@@ -3,7 +3,6 @@ import React from "react";
 import { MyButton } from "./MyButton";
 
 export const CardButtons = ({supertype, location, name}) => {
-    console.log("got to CardButtons")
     if(supertype === "Pokémon" && location === "hand") {
         return (
             <div>
