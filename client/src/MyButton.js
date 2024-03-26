@@ -13,6 +13,7 @@ export const MyButton = (props) => {
     const handleClick = () => {
         if(props.textValue == "Place on Bench"){
             alert("You chose place on bench!")
+            //state.callPlaceBench()
             //console.log(`${props.name}`)
         }
         else if(props.textValue == "Make Active"){

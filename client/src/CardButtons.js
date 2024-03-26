@@ -6,10 +6,10 @@ export const CardButtons = ({supertype, location, name}) => {
     if(supertype === "Pokémon" && location === "hand") {
         return (
             <div>
-                <MyButton className="Button" textValue="Place on Bench" name={name}/>
+                {/* instead of just returning null, call the zustand function that corresponds to place on bnech */}
+                <MyButton className="Button" textValue="Place on Bench" name={name} handleClick={() => null}/>
                 <MyButton className="Button" textValue="Make Active" name={name}/>
             </div>
-
         )
     }
     else if(supertype === "Pokémon" && location === "Bench") {
