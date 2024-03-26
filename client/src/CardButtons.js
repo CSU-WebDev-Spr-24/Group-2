@@ -3,6 +3,8 @@ import React from "react";
 import { MyButton } from "./MyButton";
 
 export const CardButtons = ({supertype, location, name}) => {
+    //const placeOnBench = zustand.placeOnBench
+    //const placeOnActive = zustand.placeOnActive
     if(supertype === "Pokémon" && location === "hand") {
         return (
             <div>
