@@ -3,5 +3,8 @@
     "mongodb": "^6.5.0",
     "mongoose": "^8.2.1",
     "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "zustand": "^4.5.2"
   }
 }

@@ -6,47 +6,16 @@ import { Hand } from './Hand';
 import { MyButton }  from './MyButton';
 import axios from 'axios';
 import { paths } from './const.js'
-// const cards = [
-//     { id: 1, name: 'Alakazam', url: 'https://images.pokemontcg.io/base1/1_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'},
-//     { id: 2, name: 'Blastoise', url: 'https://images.pokemontcg.io/base1/2_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'},
-//     { id: 3, name: 'Chansey', url: 'https://images.pokemontcg.io/base1/3_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'},
-//     { id: 4, name: 'Charizard', url: 'https://images.pokemontcg.io/base1/4_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Bench'},
-//     { id: 5, name: 'Clefairy', url: 'https://images.pokemontcg.io/base1/5_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'}
-// ];
-const opponentcards = [
-    { id: 1, name: 'Magneton', url: 'https://images.pokemontcg.io/base1/6_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'},
-    { id: 2, name: 'Machamp', url: 'https://images.pokemontcg.io/base1/7_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'},
-    { id: 3, name: 'Hitmonchan', url: 'https://images.pokemontcg.io/base1/8_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'},
-    { id: 4, name: 'Gyarados', url: 'https://images.pokemontcg.io/base1/9_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'},
-    { id: 5, name: 'Mewtwo', url: 'https://images.pokemontcg.io/base1/10_hires.png', flippedOver: false, supertype: 'Pokemon', location: 'Hand'}
-];
+import { useStore } from './resources/store.js';
 
 //add api calls here
 export const Container = memo(function Container() {
-    const [oppHand, setOppHand] = useState([])
-    const [hand, setHand] = useState([])
-
+    const {start} = useStore()
+    const player1 = useStore((state) => state.player1)
+    const player2 = useStore((state) => state.player2)
     useEffect(() => {
-        axios.get(paths.root + '/turn-zero/player1')
-        .then(function (response) {
-        // handle success
-            console.log(response.data)
-            setHand(response.data)
-        })
-        .catch(function (error) {
-        // handle error
-            console.log(error);
-        })
-        axios.get(paths.root + '/turn-zero/player2')
-        .then(function (response) {
-        // handle success
-            setOppHand(response.data)
-        })
-        .catch(function (error) {
-        // handle error
-            console.log(error);
-        })
-    },[])
+        start()
+    }, [])
 
     return (
         <div className='container-fluid'>
@@ -54,7 +23,7 @@ export const Container = memo(function Container() {
                 <div className='col'>
                     </div>
                     <div className="opponent-hand">
-                        <Hand cards={oppHand} flippedOver={true}/>
+                        <Hand cards={player2} flippedOver={true}/>
                     </div>
                 <div className='col'></div>
             </div>
@@ -93,7 +62,7 @@ export const Container = memo(function Container() {
                 </div>
             </div>
             <div className="playerHand">
-                <Hand cards={hand}/>
+                <Hand cards={player1.hand}/>
             </div>
             </div>
     )
