@@ -7,7 +7,9 @@ import axios from 'axios'
 import { paths } from '../const.js'
 
 
+
 function Start (props) {
+    
     useEffect(()=> {
         console.log(props)
         axios.get(paths.root + '/introduction')
@@ -36,6 +38,7 @@ function Start (props) {
             <Col className="align-self-center">
                 <Button className="start-button">
                     <a href="/main" className="start-button-text">Start</a>
+                    
                 </Button>
             </Col>
             <Col className="col-3"></Col>

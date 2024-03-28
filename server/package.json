@@ -9,6 +9,7 @@
     "pokemontcgsdk": "^2.0.0",
     "readline-sync": "^1.4.10",
     "start": "^5.1.0",
+    "uuid": "^9.0.1",
     "yarn": "^1.22.21"
   },
   "name": "group-2",
