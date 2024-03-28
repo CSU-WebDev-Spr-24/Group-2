@@ -3,31 +3,15 @@ import axios from "axios";
 import { paths } from "../const";
 
 export const useStore = create((set) => ({
-    /*Player object: hand, bench, active, prize, discard, deck*/
-    player1: {
-        hand: [],
-        bench: [],
-        active: [],
-        prize: [],
-        discard: [],
-        deck: []
-    },
-
-    player2: {
-        hand: [],
-        bench: [],
-        active: [],
-        prize: [],
-        discard: [],
-        deck: []
-    },
-
+    player1: { hand: [], bench: [], active: [], prize: [], discard: [], deck: [] },
+    player2: { hand: [], bench: [], active: [], prize: [], discard: [], deck: [] },
     start: async () => {
         try {
-            console.log("Got to start")
-            /* axios.get(paths.root + '/turn-zero/player1')
+            axios.get(paths.root + '/turn-zero/player1')
             .then(function (response) {
             // handle success
+                console.log("Here's the start function.")
+                console.log(response)
                 console.log(response.data)
                 set((state) => ({...state, player1: {...state.player1, hand: response.data}}))
             })
@@ -44,11 +28,25 @@ export const useStore = create((set) => ({
             .catch(function (error) {
             // handle error
                 console.log(error);
-            }) */
-            
+            })
         } catch (error) {
             throw new Error(error.message)
         }
+    },
+
+    moveToBench: async (cardName, location, slot) => {
+        try {
+            axios.get(paths.root + '/place-card', {cardName, location, slot})
+            .then(function (response) {
+                console.log(response)
+                
+            })
+        } catch (error) {
+            
+        }
+
 
     }
+
+
 }));

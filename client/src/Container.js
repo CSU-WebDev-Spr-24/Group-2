@@ -7,40 +7,12 @@ import { MyButton }  from './MyButton';
 import axios from 'axios';
 import { paths } from './const.js'
 import { create } from "zustand";
+import { useStore } from "./resources/store.js";
 
-const useStore = create((set) => ({
-    player1: { hand: [], bench: [], active: [], prize: [], discard: [], deck: [] },
-    player2: { hand: [], bench: [], active: [], prize: [], discard: [], deck: [] },
-    start: async () => {
-        try {
-            console.log("Got to start")
-            axios.get(paths.root + '/turn-zero/player1')
-            .then(function (response) {
-            // handle success
-                console.log(response.data)
-                set((state) => ({...state, player1: {...state.player1, hand: response.data}}))
-            })
-            .catch(function (error) {
-            // handle error
-                console.log(error);
-            })
-            axios.get(paths.root + '/turn-zero/player2')
-            .then(function (response) {
-            // handle success
-                console.log(response.data)
-                set((state) => ({...state, player2: {...state.player2, hand: response.data}}))
-            })
-            .catch(function (error) {
-            // handle error
-                console.log(error);
-            })
-        } catch (error) {
-            throw new Error(error.message)
-        }
-    }}));
+
 //add api calls here
 export const Container = memo(function Container() {
-    const {start} = useStore()
+    const start = useStore((state) => state.start)
     const player1 = useStore((state) => state.player1)
     const player2 = useStore((state) => state.player2)
     const getStartHands = async (e) => {
@@ -68,7 +40,7 @@ export const Container = memo(function Container() {
                 </div>
                 <div className='col-6'>
                     <div className='opponent-bench'>
-                        <Bench cards={[]} />
+                        <Bench cards={player2.bench} />
                     </div>
                 </div>
                 <div className='col'>
@@ -93,7 +65,7 @@ export const Container = memo(function Container() {
                 <div className='col'>
                 </div>
                 <div className='playerBench'>
-                    <Bench cards={[]}/>
+                    <Bench cards={player2.bench}/>
                 </div>
                 <div className='col'>
                 </div>
