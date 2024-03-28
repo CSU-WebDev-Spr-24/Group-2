@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import pokemon from 'pokemontcgsdk';
 import { CardButtons } from './CardButtons';
+import {useStore} from './resources/store';
 pokemon.configure({apiKey: '0d524a9e-011f-4f8e-a972-ad3a71503346'})
 const style = {
   borderRadius: '10px',
@@ -17,7 +18,6 @@ const style = {
 
 
 export const Card = function Card(props) {
-  const [location, setLocation] = useState('');
 
   const handleClick = () => {
     alert("I can call an API endpoint here to perform an action!")
@@ -42,7 +42,7 @@ export const Card = function Card(props) {
               <Row>
                 <Col>
                   <div className='d-grid gap-5'>
-                      <CardButtons supertype={props.supertype} location={props.location} name={props.name}/>
+                      <CardButtons supertype={props.supertype} location={props.location} name={props.name} playerId={props.playerId} index={props.index}/>
                     </div>
                 </Col>
                 <Col className='col-9'>

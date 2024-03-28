@@ -34,18 +34,19 @@ export const useStore = create((set) => ({
         }
     },
 
-    moveToBench: async (cardName, location, slot) => {
-        try {
-            axios.get(paths.root + '/place-card', {cardName, location, slot})
-            .then(function (response) {
-                console.log(response)
-                
-            })
-        } catch (error) {
-            
-        }
-
-
+    moveToBench: (playerId, index) => {
+        console.log("Here's the moveToBench function.")
+        console.log(playerId)
+        console.log(index)
+        set((state) => {
+            if(playerId === 1) {
+                return {...state, player1: {...state.player1, bench: [...state.player1.bench, state.player1.hand[index]], hand: state.player1.hand.filter((card, i) => i !== index)}}
+            }
+            else {
+                return {...state, player2: {...state.player2, bench: [...state.player2.bench, state.player2.hand[index]], hand: state.player2.hand.filter((card, i) => i !== index)}}
+            }
+        });
+        
     }
 
 

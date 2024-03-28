@@ -30,7 +30,7 @@ export const Container = memo(function Container() {
                 <div className='col'>
                     </div>
                     <div className="opponent-hand">
-                        <Hand cards={player2.hand} flippedOver={true}/>
+                        <Hand cards={player2.hand} flippedOver={true} playerId = "2"/>
                     </div>
                 <div className='col'></div>
             </div>
@@ -71,7 +71,7 @@ export const Container = memo(function Container() {
                 </div>
             </div>
             <div className="playerHand">
-                <Hand cards={player1.hand}/>
+                <Hand cards={player1.hand} flippedOver = {false} playerID = "1"/>
             </div>
             </div>
     )
